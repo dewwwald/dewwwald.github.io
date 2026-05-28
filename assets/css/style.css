@@ -1,0 +1,3029 @@
+@charset "UTF-8";
+/*
+Theme Name: Theme_Name
+Theme URI: theme_url
+Description: theme_description
+Author: author_name
+Author URI: author_url
+Version: theme_version
+.
+Any general information, license statements, plugin requirements, or any other information you
+might want to share.
+.
+*/
+/**
+ * Config
+ *
+ * Config is defined before defaults so that variables override their !default
+ * counterparts
+ */
+/*------------------------------------*    VARS.SCSS
+\*------------------------------------*/
+/**
+ * Any variables you find set in this framework's `_defaults.scss` that you do not wish to
+ * keep, simply redefine here. This means that if this framework, for example, sets
+ * your `$fs-base` at 16px and you wish it to be 14px, simply redeclare
+ * that variable in this file. this framework ignores its own variables in favour of
+ * using your own, so you can completely modify how this framework works without ever
+ * having to alter the framework itself.
+ */
+/*------------------------------------*    $OBJECTS-AND-ABSTRACTIONS
+\*------------------------------------*/
+/**
+ * All of this framework's objects and abstractions are initially turned off by
+ * default. This means that you start any project with as little as possible,
+ * and introducing objects and abstractions is as simple as switching the
+ * following variables to `true`.
+ */
+/*------------------------------------*    $OVERRIDES
+\*------------------------------------*/
+/**
+ * Place any variables that should override core _defaults.scss here.
+ */
+/*------------------------------------*    $CUSTOM
+\*------------------------------------*/
+/**
+ * Place any of your own variables that sit on top of core _defaults.scss here.
+ */
+/*------------------------------------*    $FONTS
+\*------------------------------------*/
+/**
+ * Icon Font
+ *
+ * Dependant on $use-icons being true. These variables are used in the font-face mixin.
+ *
+ * This font is enabled via custom/base/_fonts.scss
+ */
+/**
+ * Base Font Face
+ *
+ * This font is enabled via custom/base/_fonts.scss
+ */
+/**
+ * Base Font Variations
+ */
+/**
+ * Header Font Face
+ *
+ * This font is enabled via custom/header/_fonts.scss
+ */
+/**
+ * header Font Variations
+ */
+/*------------------------------------*    $COLORS
+\*------------------------------------*/
+/**
+ * The base color for text, borders, etc.
+ */
+/**
+ * The primary non-base color
+ */
+/**
+ * The secondary non-base color
+ */
+/**
+ * The tertiary non-base color
+ */
+/*------------------------------------*  $DEFAULTS
+\*------------------------------------*/
+/**
+ * inuit.css’ default variables. Redefine these in your `_vars.scss` file (found
+ * in the inuit.css-web-template) to override them.
+ */
+/*------------------------------------*  $BASE
+\*------------------------------------*/
+/**
+ * Base variables. These are included first as they provide a basis for calculations
+ * throughout the framework.
+ */
+/**
+ * Base font-family.
+ */
+/**
+ * Default colour for objects’ borders etc.
+ */
+/*------------------------------------*  $FRAMEWORK
+\*------------------------------------*/
+/**
+ * inuit.css will work these next ones out for use within the framework.
+ *
+ * Assign our `$base-line-height` to a new spacing var for more transparency.
+ */
+/*------------------------------------*  $DEBUG
+\*------------------------------------*/
+/**
+ * Debug mode will visually highlight any potential markup/accessibility quirks
+ * in the browser. Set to `true` or `false`.
+ */
+/*------------------------------------*  $RAILS
+\*------------------------------------*/
+/**
+ * Using Rails? You'll need the font-face mixin to behave differently to correctly
+ * load font assets
+ */
+/*------------------------------------*  $BORDER-BOX
+\*------------------------------------*/
+/**
+ * Do you want all elements to adopt `box-sizing:border-box;` as per
+ * paulirish.com/2012/box-sizing-border-box-ftw ?
+ */
+/*------------------------------------*  $PREFIXES
+\*------------------------------------*/
+/*------------------------------------*  $GRIDS
+\*------------------------------------*/
+/**
+ * Use either a flexbox based grid, an inline-block based grid, or both!
+ */
+/**
+ * A unitless value will output rem units with px fallback for gutters,
+ * otherwise a unit value will output only that value
+ */
+/*------------------------------------*  $RESPONSIVE
+\*------------------------------------*/
+/**
+ * Responsiveness?
+ */
+/**
+ * Responsiveness for widescreen/high resolution desktop monitors and beyond?
+ * Note: `$responsive` variable above must be set to true before enabling this.
+ */
+/**
+ * Responsive push and pull produce a LOT of code, only turn them on if you
+ * definitely need them.
+ */
+/**
+ * Note: `$push` variable above must be set to true before enabling these.
+ */
+/**
+ * Note: `$pull` variable above must be set to true before enabling these.
+ */
+/**
+ * Tell inuit.css when breakpoints start.
+ */
+/*------------------------------------*  $FONT-SIZES
+\*------------------------------------*/
+/**
+ * Font-sizes (in pixels). Refer to relevant sections for their implementations.
+ */
+/*------------------------------------*  $QUOTES
+\*------------------------------------*/
+/**
+ * English quote marks?
+ */
+/**
+ * If you want English quotes then please do not edit these; they’re only here
+ * because Sass needs them.
+ */
+/**
+ * If you need non-English quotes, please alter the following values accordingly:
+ */
+/*------------------------------------*  $TABLES
+\*------------------------------------*/
+/*------------------------------------*  $IMAGES
+\*------------------------------------*/
+/*------------------------------------*  $CODE
+\*------------------------------------*/
+/*------------------------------------*  $BRAND
+\*------------------------------------*/
+/**
+ * Brand stuff
+ */
+/**
+ * How big would you like round corners to be by default?
+ */
+/*------------------------------------*  $COLORS
+\*------------------------------------*/
+/*------------------------------------*  $OBJECTS AND ABSTRACTIONS
+\*------------------------------------*/
+/**
+ * Which objects and abstractions would you like to use?
+ */
+/**
+ * Import the rest of the framework, followed by custom styles
+ */
+/*------------------------------------*    INUIT.CSS
+\*------------------------------------*/
+/*!*
+ *
+ * inuitcss.com -- @inuitcss -- @csswizardry
+ *
+ */
+/**
+ * inuit.css acts as a base stylesheet which you should extend with your own
+ * theme stylesheet.
+ *
+ * inuit.css aims to do the heavy lifting; sorting objects and abstractions,
+ * design patterns and fiddly bits of CSS, whilst leaving as much design as
+ * possible to you. inuit.css is the scaffolding to your decorator.
+ *
+ * This stylesheet is heavily documented and contains lots of comments, please
+ * take care to read and refer to them as you build. For further support please
+ * tweet at @inuitcss.
+ *
+ * Owing to the amount of comments please only ever use minified CSS in
+ * production. This file is purely a dev document.
+ *
+ * The table of contents below maps to section titles of the same name, to jump
+ * to any section simply run a find for $[SECTION-TITLE].
+ *
+ * Most objects and abstractions come with a chunk of markup that you should be
+ * able to paste into any view to quickly see how the CSS works in conjunction
+ * with the correct HTML.
+ *
+ * inuit.css is written to this standard: github.com/csswizardry/CSS-Guidelines
+ *
+ * LICENSE
+ *
+ * Copyright 2013 Harry Roberts
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Thank you for choosing inuit.css. May your web fonts render perfectly.
+ */
+/*------------------------------------*    $CONTENTS
+\*------------------------------------*/
+/**
+ * CONTENTS............You’re reading it!
+ * WARNING.............Here be dragons!
+ * IMPORTS.............Begin importing the sections below
+ *
+ * MIXINS..............Super-simple Sass stuff
+ * NORMALIZE...........normalize.css
+ * RESET...............Set some defaults
+ * CLEARFIX............
+ * SHARED..............Shared declarations
+ *
+ * MAIN................High-level elements like `html`, `body`, etc.
+ * HEADINGS............Double-stranded heading hierarchy
+ * PARAGRAPHS..........
+ * SMALLPRINT..........Smaller text elements like `small`
+ * QUOTES..............
+ * CODE................
+ * LISTS...............
+ * IMAGES..............
+ * TABLES..............
+ * FORMS...............
+ *
+ * GRIDS...............Fluid, proportional and nestable grids
+ * COLUMNS.............CSS3 columns
+ * NAV.................A simple abstraction to put a list in horizontal nav mode
+ * OPTIONS.............Grouped nav items
+ * PAGINATION..........Very stripped back, basic paginator
+ * BREADCRUMB..........Simple breadcrumb trail object
+ * MEDIA...............Media object
+ * MARGINALIA..........Simple marginalia content
+ * ISLAND..............Boxed off content
+ * BLOCK-LIST..........Blocky lists of content
+ * MATRIX..............Gridded lists
+ * SPLIT...............A simple split-in-two object
+ * THIS-OR-THIS........Options object
+ * LINK-COMPLEX........
+ * FLYOUT..............Flyout-on-hover object
+ * ARROWS..............CSS arrows
+ * SPRITE..............Generic spriting element
+ * ICON-TEXT...........Icon and text couplings
+ * BEAUTONS............Use the beautons micro library
+ * LOZENGES............Basic lozenge styles
+ * RULES...............Horizontal rules
+ * STATS...............Simple stats object
+ * GREYBOX.............Wireframing styles
+ *
+ * WIDTHS..............Width classes for use alongside the grid system etc.
+ * PUSH................Push classes for manipulating grids
+ * PULL................Pull classes for manipulating grids
+ * BRAND...............Helper class to apply brand treatment to elements
+ * DEBUG...............Enable to add visual flags for debugging purposes
+ */
+/*------------------------------------*    $WARNING
+\*------------------------------------*/
+/*
+ * inuit.css, being an OO framework, works in keeping with the open/closed
+ * principle. The variables you set previously are now being used throughout
+ * inuit.css to style everything we need for a base. Any custom styles SHOULD
+ * NOT be added or modified in inuit.css directly, but added via your theme
+ * stylesheet as per the open/closed principle:
+ *
+ * csswizardry.com/2012/06/the-open-closed-principle-applied-to-css
+ *
+ * Try not to edit any CSS beyond this point; if you find you need to do so
+ * it is a failing of the framework so please tweet at @inuitcss.
+ */
+/*------------------------------------*    $BASE
+\*------------------------------------*/
+/*------------------------------------*    $FUNCTIONS
+\*------------------------------------*/
+/*------------------------------------*    $MAP GET DEEP
+\*------------------------------------*/
+/*------------------------------------*    $PX TO REM
+\*------------------------------------*/
+/*
+ * Convert a px value to the equivalent rem value.
+ *
+ * Takes both px values, and unitless values.
+ *
+ * Will use $fs-base if it exists, otherwise takes a second parameter, defaulted to
+ * 16px.
+ *
+ * Value provided should be same as pixel value on html tag
+ *
+ * Example:
+
+  .my-class {
+    font-size: px-to-rem(24px); // => 1.5rem
+  }
+
+  // or
+
+  .my-class {
+    font-size: px-to-rem(24); // => 1.5rem
+  }
+ */
+/*------------------------------------*    $MIXINS
+\*------------------------------------*/
+/*------------------------------------*    $ACCESSIBILITY
+\*------------------------------------*/
+/**
+ * CSS arrows!!! But... before you read on, you might want to grab a coffee...
+ *
+ * This mixin creates a CSS arrow on a given element. We can have the arrow
+ * appear in one of 12 locations, thus:
+ *
+ *     01  02  03
+ *  +------------------+
+ * 12 |          | 04
+ *  |          |
+ * 11 |          | 05
+ *  |          |
+ * 10 |          | 06
+ *  +------------------+
+ *     09  08  07
+ *
+ * You pass this position in along with a desired arrow color and optional
+ * border color, for example:
+ *
+ * `@include arrow(top, left, red)`
+ *
+ * for just a single, red arrow, or:
+ *
+ * `@include arrow(bottom, center, red, black)`
+ *
+ * which will create a red triangle with a black border which sits at the bottom
+ * center of the element. Call the mixin thus:
+ *
+   .foo{
+     background-color:#BADA55;
+     border:1px solid #ACE;
+     @include arrow(top, left, #BADA55, #ACE);
+   }
+ *
+ */
+/**
+ * Create a fully formed type style (sizing and vertical rhythm) by passing in a
+ * single value, e.g.:
+ *
+   `@include font-size(10px);`
+ *
+ * Thanks to @redclov3r for the `line-height` Sass:
+ * twitter.com/redclov3r/status/250301539321798657
+ */
+/**
+ * Style any number of headings in one fell swoop, e.g.:
+ *
+   .foo{
+     @include headings(1, 3){
+       color:#BADA55;
+     }
+  }
+ *
+ * With thanks to @lar_zzz, @paranoida, @rowanmanning and ultimately
+ * @thierrylemoulec for refining and improving my initial mixin.
+ */
+/**
+ * Media query mixin.
+ *
+ * It’s not great practice to define solid breakpoints up-front, preferring to
+ * modify your design when it needs it, rather than assuming you’ll want a
+ * change at ‘mobile’. However, as inuit.css is required to take a hands off
+ * approach to design decisions, this is the closest we can get to baked-in
+ * responsiveness. It’s flexible enough to allow you to set your own breakpoints
+ * but solid enough to be frameworkified.
+ *
+ * We define some broad breakpoints in our vars file that are picked up here
+ * for use in a simple media query mixin. Our options are:
+ *
+ * palm
+ * lap
+ * lap-and-up
+ * portable
+ * desk
+ * desk-wide
+ *
+ * Not using a media query will, naturally, serve styles to all devices.
+ *
+ * `@include media-query(palm){ [styles here] }`
+ *
+ * We work out your end points for you:
+ */
+/**
+ * Force overly long spans of text to truncate, e.g.:
+ *
+   `@include truncate(100%);`
+ *
+ * Where `$truncation-boundary` is a united measurement.
+ */
+/*------------------------------------*    $BASE
+\*------------------------------------*/
+/*------------------------------------*  $ALL BASE IMPORTS
+\*------------------------------------*/
+/*------------------------------------*  $RESET
+\*------------------------------------*/
+/**
+ * A more considered reset; more of a restart...
+ * As per: csswizardry.com/2011/10/reset-restarted
+ */
+/**
+  * Let’s make the box model all nice, shall we...?
+  */
+*, *:before, *:after {
+  box-sizing: border-box; }
+
+/**
+ * The usual...
+ */
+h1, h2, h3, h4, h5, h6,
+p, blockquote, pre,
+dl, dd, ol, ul,
+form, fieldset, legend,
+table, th, td, caption,
+hr {
+  margin: 0;
+  padding: 0; }
+
+/**
+ * Give a help cursor to elements that give extra info on `:hover`.
+ */
+abbr[title], dfn[title] {
+  cursor: help; }
+
+/**
+ * Remove underlines from potentially troublesome elements.
+ */
+u, ins {
+  text-decoration: none; }
+
+/**
+ * Apply faux underline via `border-bottom`.
+ */
+ins {
+  border-bottom: 1px solid; }
+
+/**
+ * So that `alt` text is visually offset if images don’t load.
+ */
+img {
+  font-style: italic; }
+
+/**
+ * Give form elements some cursor interactions...
+ */
+label,
+input,
+textarea,
+button,
+select,
+option {
+  cursor: pointer; }
+
+.text-input:active,
+.text-input:focus,
+textarea:active,
+textarea:focus {
+  cursor: text;
+  outline: none; }
+
+/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+/**
+ * 1. Set default font family to sans-serif.
+ * 2. Prevent iOS and IE text size adjust after device orientation change,
+ *    without disabling user zoom.
+ */
+html {
+  font-family: sans-serif;
+  /* 1 */
+  -ms-text-size-adjust: 100%;
+  /* 2 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */ }
+
+/**
+ * Remove default margin.
+ */
+body {
+  margin: 0; }
+
+/* HTML5 display definitions
+   ========================================================================== */
+/**
+ * Correct `block` display not defined for any HTML5 element in IE 8/9.
+ * Correct `block` display not defined for `details` or `summary` in IE 10/11
+ * and Firefox.
+ * Correct `block` display not defined for `main` in IE 11.
+ */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+main,
+menu,
+nav,
+section,
+summary {
+  display: block; }
+
+/**
+ * 1. Correct `inline-block` display not defined in IE 8/9.
+ * 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
+ */
+audio,
+canvas,
+progress,
+video {
+  display: inline-block;
+  /* 1 */
+  vertical-align: baseline;
+  /* 2 */ }
+
+/**
+ * Prevent displaying `audio` without controls in Mobile Safari 4/5/6/7.
+ */
+audio:not([controls]) {
+  display: none;
+  height: 0; }
+
+/**
+ * Address `[hidden]` styling not present in IE 8/9/10.
+ * Hide the `template` element in IE 8/9/10/11, Safari, and Firefox < 22.
+ */
+[hidden],
+template {
+  display: none; }
+
+/* Links
+   ========================================================================== */
+/**
+ * Remove the gray background color from active links in IE 10.
+ */
+a {
+  background-color: transparent; }
+
+/**
+ * Improve readability of focused elements when they are also in an
+ * active/hover state.
+ */
+a:active,
+a:hover {
+  outline: 0; }
+
+/* Text-level semantics
+   ========================================================================== */
+/**
+ * Address inconsistent styling of `abbr[title]`.
+ * 1. Correct styling in Firefox 39 and Opera 12.
+ * 2. Correct missing styling in Chrome, Edge, IE, Opera, and Safari.
+ */
+abbr[title] {
+  border-bottom: none;
+  /* 1 */
+  text-decoration: underline;
+  /* 2 */
+  text-decoration: underline dotted;
+  /* 2 */ }
+
+/**
+ * Address inconsistent styling of b and strong.
+ * 1. Correct duplicate application of `bolder` in Safari 6.0.2.
+ * 2. Correct style set to `bold` in Edge 12+, Safari 6.2+, and Chrome 18+.
+ */
+b,
+strong {
+  font-weight: inherit;
+  /* 1 */ }
+
+b,
+strong {
+  font-weight: bolder;
+  /* 2 */ }
+
+/**
+ * Address styling not present in Safari and Chrome.
+ */
+dfn {
+  font-style: italic; }
+
+/**
+ * Address variable `h1` font-size and margin within `section` and `article`
+ * contexts in Firefox 4+, Safari, and Chrome.
+ */
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0; }
+
+/**
+ * Address styling not present in IE 8/9.
+ */
+mark {
+  background-color: #ff0;
+  color: #000; }
+
+/**
+ * Address inconsistent and variable font size in all browsers.
+ */
+small {
+  font-size: 80%; }
+
+/**
+ * Prevent `sub` and `sup` affecting `line-height` in all browsers.
+ */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline; }
+
+sup {
+  top: -0.5em; }
+
+sub {
+  bottom: -0.25em; }
+
+/* Embedded content
+   ========================================================================== */
+/**
+ * Remove border when inside `a` element in IE 8/9/10.
+ */
+img {
+  border: 0; }
+
+/**
+ * Correct overflow not hidden in IE 9/10/11.
+ */
+svg:not(:root) {
+  overflow: hidden; }
+
+/* Grouping content
+   ========================================================================== */
+/**
+ * Address margin not present in IE 8/9 and Safari.
+ */
+figure {
+  margin: 1em 40px; }
+
+/**
+ * Address inconsistent styling of `hr`.
+ * 1. Correct `box-sizing` set to `border-box` in Firefox.
+ * 2. Correct `overflow` set to `hidden` in IE 8/9/10/11 and Edge 12.
+ */
+hr {
+  box-sizing: content-box;
+  /* 1 */
+  height: 0;
+  /* 1 */
+  overflow: visible;
+  /* 2 */ }
+
+/**
+ * Contain overflow in all browsers.
+ */
+pre {
+  overflow: auto; }
+
+/**
+ * 1. Correct inheritance and scaling of font-size for preformatted text.
+ * 2. Address odd `em`-unit font size rendering in all browsers.
+ */
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */ }
+
+/* Forms
+   ========================================================================== */
+/**
+ * Known limitation: by default, Chrome and Safari on OS X allow very limited
+ * styling of `select`, unless a `border` property is set.
+ */
+/**
+ * 1. Correct font properties not being inherited.
+ * 2. Address margins set differently in Firefox 4+, Safari, and Chrome.
+ */
+button,
+input,
+optgroup,
+select,
+textarea {
+  font: inherit;
+  /* 1 */
+  margin: 0;
+  /* 2 */ }
+
+/**
+ * Address `overflow` set to `hidden` in IE 8/9/10/11.
+ */
+button {
+  overflow: visible; }
+
+/**
+ * Address inconsistent `text-transform` inheritance for `button` and `select`.
+ * All other form control elements do not inherit `text-transform` values.
+ * Correct `button` style inheritance in Firefox, IE 8/9/10/11, and Opera.
+ * Correct `select` style inheritance in Firefox.
+ */
+button,
+select {
+  text-transform: none; }
+
+/**
+ * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+ *    and `video` controls.
+ * 2. Correct inability to style clickable `input` types in iOS.
+ * 3. Improve usability and consistency of cursor style between image-type
+ *    `input` and others.
+ */
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button;
+  /* 2 */
+  cursor: pointer;
+  /* 3 */ }
+
+/**
+ * Re-set default cursor for disabled elements.
+ */
+button[disabled],
+html input[disabled] {
+  cursor: default; }
+
+/**
+ * Remove inner padding and border in Firefox 4+.
+ */
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0; }
+
+/**
+ * Restore focus style in Firefox 4+ (unset by a rule above)
+ */
+button:-moz-focusring,
+input:-moz-focusring {
+  outline: 1px dotted ButtonText; }
+
+/**
+ * Address Firefox 4+ setting `line-height` on `input` using `!important` in
+ * the UA stylesheet.
+ */
+input {
+  line-height: normal; }
+
+/**
+ * It's recommended that you don't attempt to style these elements.
+ * Firefox's implementation doesn't respect box-sizing, padding, or width.
+ *
+ * 1. Address box sizing set to `content-box` in IE 8/9/10.
+ * 2. Remove excess padding in IE 8/9/10.
+ */
+input[type="checkbox"],
+input[type="radio"] {
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */ }
+
+/**
+ * Fix the cursor style for Chrome's increment/decrement buttons. For certain
+ * `font-size` values of the `input`, it causes the cursor style of the
+ * decrement button to change from `default` to `text`.
+ */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  height: auto; }
+
+/**
+ * Address `appearance` set to `searchfield` in Safari and Chrome.
+ */
+input[type="search"] {
+  -webkit-appearance: textfield; }
+
+/**
+ * Remove inner padding and search cancel button in Safari and Chrome on OS X.
+ * Safari (but not Chrome) clips the cancel button when the search input has
+ * padding (and `textfield` appearance).
+ */
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none; }
+
+/**
+ * Define consistent border, margin, and padding.
+ */
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em; }
+
+/**
+ * 1. Correct `color` not being inherited in IE 8/9/10/11.
+ * 2. Remove padding so people aren't caught out if they zero out fieldsets.
+ */
+legend {
+  border: 0;
+  /* 1 */
+  padding: 0;
+  /* 2 */ }
+
+/**
+ * Remove default vertical scrollbar in IE 8/9/10/11.
+ */
+textarea {
+  overflow: auto; }
+
+/**
+ * Restore font weight (unset by a rule above).
+ * NOTE: the default cannot safely be changed in Chrome and Safari on OS X.
+ */
+optgroup {
+  font-weight: bold; }
+
+/*------------------------------------*  $DOCUMENT
+\*------------------------------------*/
+html {
+  /*
+   * Can't use relative units on html due to bug on
+   * Chrome and Safari.
+   * CodePen: http://codepen.io/larrybotha/pen/wKYYXE
+   * Chrome Bug Tracker: https://code.google.com/p/chromium/issues/detail?id=319623#c16
+   */
+  /*
+   * TODO: use relative unit once Chrome bug is fixed
+   */
+  font-size: 18px;
+  min-height: 100%; }
+
+html, body, button, input, select, textarea {
+  font-family: "OpenSans", Arial, sans-serif;
+  color: #404040; }
+
+/**
+ * FireFox on Android adds gradients to these elements
+ * Let's end the tyranny
+ */
+button, input, select, textarea {
+  background-image: none; }
+
+body {
+  background-color: #fff;
+  font-size: 1em;
+  line-height: 1.22222;
+  margin: 0; }
+
+/*
+ * Remove text-shadow in selection highlight: h5bp.com/i
+ * These selection declarations have to be separate
+ */
+::-moz-selection {
+  background: #acded5;
+  color: #fff;
+  text-shadow: none; }
+
+::selection {
+  background: #acded5;
+  color: #fff;
+  text-shadow: none; }
+
+/*------------------------------------*  $CODE
+\*------------------------------------*/
+/**
+ * Use an explicit font stack to ensure browsers render correct `line-height`.
+ */
+pre {
+  overflow: auto; }
+
+pre mark {
+  background: none;
+  border-bottom: 1px solid;
+  color: inherit; }
+
+/*------------------------------------*  $FORMS
+\*------------------------------------*/
+/**
+ *
+ * Demo: jsfiddle.net/inuitcss/MhHHU
+ *
+ */
+fieldset {
+  padding: 1.5; }
+
+/**
+ * Text inputs
+ *
+ * Instead of a `[type]` selector for each kind of form input, we just use a
+ * class to target any/every one, e.g.:
+   <input type=text class=text-input>
+   <input type=email class=text-input>
+   <input type=password class=text-input>
+ *
+ */
+.text-input,
+textarea {
+  /**
+   * Style these via your theme stylesheet.
+   */ }
+
+/**
+ * Radios and Checkboxes
+ *
+ * Make radios and checkboxes appear clickable
+ */
+input[type="radio"],
+input[type="checkbox"] {
+  cursor: pointer;
+  border: none; }
+
+/*------------------------------------*		$SHARED
+\*------------------------------------*/
+/**
+ * Where `margin-bottom` is concerned, this value will be the same as the
+ * base line-height. This allows us to keep a consistent vertical rhythm.
+ * As per: csswizardry.com/2012/06/single-direction-margin-declarations
+ */
+/**
+ * Base elements
+ */
+h1, h2, h3, h4, h5, h6, hgroup,
+ul, ol, dl,
+blockquote, p, address,
+table,
+fieldset, figure,
+pre {
+  margin-top: 0;
+  margin-bottom: 27px;
+  margin-bottom: 1.5rem; }
+
+/**
+ * `hr` elements only take up a few pixels, so we need to give them special
+ * treatment regarding vertical rhythm.
+ */
+hr {
+  margin-bottom: 27px;
+  margin-bottom: 1.5rem; }
+
+/**
+ * Where `margin-left` is concerned we want to try and indent certain elements
+ * by a consistent amount. Define that amount once, here.
+ */
+ul, ol, dd {
+  margin-left: 1.5em; }
+
+/*------------------------------------*  $HEADINGS
+\*------------------------------------*/
+/**
+ * As per: csswizardry.com/2012/02/pragmatic-practical-font-sizing-in-css
+ *
+ * When we define a heading we also define a corresponding class to go with it.
+ * This allows us to apply, say, `class=fs--h1` to a `h3`; a double-stranded
+ * heading hierarchy.
+ */
+h1, .fs--h1 {
+  font-size: 2.66667rem; }
+
+h2, .fs--h2, h1 small, .persona__main {
+  font-size: 2.22222rem; }
+
+h3, .fs--h3 {
+  font-size: 2rem; }
+
+h4, .fs--h4 {
+  font-size: 1.33333rem; }
+
+h5, .fs--h5 {
+  font-size: 1rem; }
+
+h6, .fs--h6 {
+  font-size: 0.88889rem; }
+
+/**
+ * A series of classes for setting massive type; for use in heroes, mastheads,
+ * promos, etc.
+ */
+.fs--giga {
+  font-size: 5.33333rem; }
+
+.fs--mega {
+  font-size: 4rem; }
+
+.fs--kilo, .portfolio-item__title {
+  font-size: 2.66667rem; }
+
+/*------------------------------------*    $IMAGES
+\*------------------------------------*/
+/**
+ * Demo: jsfiddle.net/inuitcss/yMtur
+ */
+/*
+ * Prevent images and embeds from exceeding width of containing element
+ * width:; and height:; above apply
+ */
+img, embed, object, video {
+  max-width: 100%;
+  height: auto; }
+
+/**
+ * Images in `figure` elements.
+ */
+figure > img {
+  display: block; }
+
+/*------------------------------------*    $LISTS
+\*------------------------------------*/
+/**
+ * Remove vertical spacing from nested lists.
+ */
+li > ul,
+li > ol {
+  margin-top: 0;
+  margin-bottom: 0; }
+
+/**
+ * Have a numbered `ul` without the semantics implied by using an `ol`.
+ */
+/*ul*/
+.numbered-list {
+  list-style-type: decimal; }
+
+/*------------------------------------*    $PARAGRAPHS
+\*------------------------------------*/
+/**
+ * The `.lede` class is used to make the introductory text (usually a paragraph)
+ * of a document slightly larger.
+ */
+.lede,
+.lead {
+  font-size: 1.125rem; }
+
+/*------------------------------------*    $QUOTES
+\*------------------------------------*/
+/**
+ * If English quotes are set in `_vars.scss`, define them here.
+ */
+/**
+ * Big up @boblet: html5doctor.com/blockquote-q-cite
+ */
+/**
+ * Inline quotes.
+ */
+q {
+  quotes: "‘" "’" "\\201C " "\\201D "; }
+  q:before {
+    content: "\2018";
+    content: open-quote; }
+  q:after {
+    content: "\2019";
+    content: close-quote; }
+  q q:before {
+    content: "\201C";
+    content: open-quote; }
+  q q:after {
+    content: "\201D";
+    content: close-quote; }
+
+/**
+ *
+   <blockquote>
+       <p>Insanity: doing the same thing over and over again and expecting
+       different results.</p>
+       <b class=source>Albert Einstein</b>
+   </blockquote>
+ *
+ */
+blockquote p:first-of-type {
+  margin-top: 0; }
+
+blockquote p:last-of-type {
+  margin-bottom: 0; }
+
+.source {
+  display: block;
+  text-indent: 0; }
+  .source:before {
+    content: "\2014"; }
+
+/*------------------------------------*    $SMALLPRINT
+\*------------------------------------*/
+/**
+ * A series of classes for setting tiny type; for use in smallprint etc.
+ */
+.fs--milli, .btn--base {
+  font-size: 0.77778rem; }
+
+.fs--micro {
+  font-size: 0.55556rem; }
+
+.fs--nano {
+  font-size: 0.44444rem; }
+
+/*------------------------------------*  $TABLES
+\*------------------------------------*/
+/**
+ * We have a lot at our disposal for making very complex table constructs, e.g.:
+ *
+   <table class="table--bordered  table--striped  table--data">
+     <colgroup>
+       <col class=t10>
+       <col class=t10>
+       <col class=t10>
+       <col>
+     </colgroup>
+     <thead>
+       <tr>
+         <th colspan=3>Foo</th>
+         <th>Bar</th>
+       </tr>
+       <tr>
+         <th>Lorem</th>
+         <th>Ipsum</th>
+         <th class=numerical>Dolor</th>
+         <th>Sit</th>
+       </tr>
+     </thead>
+     <tbody>
+       <tr>
+         <th rowspan=3>Sit</th>
+         <td>Dolor</td>
+         <td class=numerical>03.788</td>
+         <td>Lorem</td>
+       </tr>
+       <tr>
+         <td>Dolor</td>
+         <td class=numerical>32.210</td>
+         <td>Lorem</td>
+       </tr>
+       <tr>
+         <td>Dolor</td>
+         <td class=numerical>47.797</td>
+         <td>Lorem</td>
+       </tr>
+       <tr>
+         <th rowspan=2>Sit</th>
+         <td>Dolor</td>
+         <td class=numerical>09.640</td>
+         <td>Lorem</td>
+       </tr>
+       <tr>
+         <td>Dolor</td>
+         <td class=numerical>12.117</td>
+         <td>Lorem</td>
+       </tr>
+     </tbody>
+   </table>
+ *
+ */
+table {
+  width: 100%; }
+
+th,
+td {
+  padding: 6.75px;
+  padding: 0.375rem;
+  text-align: left; }
+  @media screen and (min-width: 480px) {
+    th,
+    td {
+      padding: 13.5px;
+      padding: 0.75rem; } }
+
+/*------------------------------------*    $COMPONENTS
+\*------------------------------------*/
+/*------------------------------------*    $ALL COMPONENTS
+\*------------------------------------*/
+/*------------------------------------*    $BUTTONS
+\*------------------------------------*/
+.btn--base {
+  position: relative;
+  display: inline-block;
+  background-image: none;
+  background-color: transparent;
+  text-align: center;
+  line-height: normal;
+  vertical-align: middle;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  white-space: nowrap; }
+  .btn--base:active, .btn--base:focus {
+    outline: none; }
+
+.btn--base {
+  cursor: pointer;
+  transition: all 150ms ease-in; }
+  .btn--base, .btn--base:hover, .btn--base:focus {
+    text-decoration: none; }
+  .btn--base:active, .btn--base:focus {
+    transition: none; }
+  [disabled].btn--base, .btn--base:disabled {
+    cursor: default; }
+
+/*------------------------------------*    $RATIO OBJECT
+\*------------------------------------*/
+/**
+ * An object which scales proportionately
+ *
+ * http://bit.ly/19I8iR8
+ */
+.portfolio-item {
+  position: relative;
+  overflow: hidden; }
+  .portfolio-item:before {
+    content: "";
+    display: block; }
+
+.portfolio-item__inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0; }
+
+/*------------------------------------*    $LAYOUT
+\*------------------------------------*/
+/*------------------------------------*    $ALL LAYOUT
+\*------------------------------------*/
+/*------------------------------------*    $CLEARFIX
+\*------------------------------------*/
+/**
+ * Micro clearfix, as per: css-101.org/articles/clearfix/latest-new-clearfix-so-far.php
+ * Extend the clearfix class with Sass to avoid the `.cf` class appearing over
+ * and over in your markup.
+ */
+.cf:before, .cf:after {
+  content: "";
+  display: table;
+  clear: both; }
+
+/*------------------------------------*    $GRIDS
+\*------------------------------------*/
+/**
+ * Fluid and nestable grid system, e.g.:
+ *
+   <div class="gw">
+       <div class="g  one-third">
+           <p>One third grid</p>
+       </div><!--
+    --><div class="g  two-thirds">
+           <p>Two thirds grid</p>
+       </div><!--
+    --><div class="g  one-half">
+           <p>One half grid</p>
+       </div><!--
+    --><div class="g  one-quarter">
+           <p>One quarter grid</p>
+       </div><!--
+    --><div class="g  one-quarter">
+           <p>One quarter grid</p>
+       </div>
+   </div>
+ *
+ * Demo: jsfiddle.net/inuitcss/CLYUC
+ *
+ */
+/**
+ * Grid wrapper
+ */
+.gw, .gw--no-guts {
+  list-style: none;
+  margin-bottom: 0;
+  margin-left: -36px;
+  margin-left: -2rem;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap; }
+  .oldie .gw, .oldie .gw--no-guts {
+    display: inline-block;
+    width: 100%;
+    width: calc(100% + 2em); }
+
+/**
+ * very infrequently occuring grid wrappers as children of grid wrappers.
+ */
+[class*="gw"] > [class*="gw"] {
+  margin-left: 0; }
+
+/**
+   * grid items
+   */
+.g, .g--tall, .g--auto, .g--shrink-wrap {
+  padding-left: 36px;
+  padding-left: 2rem;
+  width: 100%; }
+  .oldie .g, .oldie .g--tall, .oldie .g--auto, .oldie .g--shrink-wrap {
+    display: inline-block;
+    vertical-align: top; }
+
+/**
+   * Allow the content of a column to occupy the full height of the
+   * column
+   *
+   * Child div must have flex: 1; or width: 100%; set to fill horizontal
+   * space
+   *
+   * Does not work for legacy browsers
+   */
+.g--tall {
+  display: -ms-flexbox;
+  display: flex; }
+
+/**
+   * Columns that automatically fill the remaining horizontal space
+   *
+   * To be used as is, without column width modifiers. Viewport modifiers will
+   * not override the effect of auto.
+   *
+   * Works mostly on <= IE9, mostly
+   * Requires .oldie class on html tag
+   */
+.g--auto {
+  -ms-flex: 1;
+      flex: 1; }
+  .oldie .g--auto {
+    display: table-cell; }
+
+/**
+   * Columns that shrink wrap around content - ideal for .g--auto to occupy
+   * remaining space.
+   *
+   * To be used as is, without column width modifiers. Viewport modifiers will
+   * override shrink-wrap effect
+   *
+   * Works mostly on <= IE9, mostly
+   */
+.g--shrink-wrap {
+  width: auto; }
+  .oldie .g--shrink-wrap {
+    display: table-cell; }
+
+/**
+* reversed grids
+*/
+/**
+* gutterless grids have all the properties of regular grids, minus any spacing.
+*/
+.gw--no-guts {
+  margin-left: 0; }
+  .gw--no-guts > .g, .gw--no-guts > .g--tall, .gw--no-guts > .g--auto, .gw--no-guts > .g--shrink-wrap {
+    padding-left: 0; }
+
+/**
+* centered grids align grid items centrally without needing to use push or pull
+* classes.
+*/
+/**
+ * right aligned grids
+ */
+/**
+ * middle aligned grids
+ */
+/**
+ * bottom aligned grids
+ */
+/*------------------------------------*		$WIDTHS
+\*------------------------------------*/
+/**
+ * Sizes in human readable format. These are used in conjunction with other
+ * objects and abstractions found in inuit.css, most commonly the grid system
+ * and faux flexbox.
+ *
+ * We have a mixin to generate our widths and their breakpoint-specific
+ * variations.
+ */
+/**
+	* Whole
+	*/
+.g-1\/1 {
+  width: 100%; }
+
+/**
+	* Halves
+	*/
+.g-1\/2, .g-2\/4, .g-3\/6, .g-4\/8, .g-5\/10, .g-6\/12 {
+  width: 50%; }
+
+/**
+	* Thirds
+	*/
+.g-1\/3, .g-2\/6, .g-4\/12 {
+  width: 33.333%; }
+
+.g-2\/3, .g-4\/6, .g-8\/12 {
+  width: 66.666%; }
+
+/**
+	* Quarters
+	*/
+.g-1\/4, .g-2\/8, .g-3\/12 {
+  width: 25%; }
+
+.g-3\/4, .g-6\/8, .g-9\/12 {
+  width: 75%; }
+
+/**
+	* Fifths
+	*/
+.g-1\/5, .g-2\/10 {
+  width: 20%; }
+
+.g-2\/5, .g-4\/10 {
+  width: 40%; }
+
+.g-3\/5, .g-6\/10 {
+  width: 60%; }
+
+.g-4\/5, .g-8\/10 {
+  width: 80%; }
+
+/**
+	* Sixths
+	*/
+.g-1\/6, .g-2\/12 {
+  width: 16.666%; }
+
+.g-5\/6, .g-10\/12 {
+  width: 83.333%; }
+
+/**
+	* Eighths
+	*/
+.g-1\/8 {
+  width: 12.5%; }
+
+.g-3\/8 {
+  width: 37.5%; }
+
+.g-5\/8 {
+  width: 62.5%; }
+
+.g-7\/8 {
+  width: 87.5%; }
+
+/**
+	* Tenths
+	*/
+.g-1\/10 {
+  width: 10%; }
+
+.g-3\/10 {
+  width: 30%; }
+
+.g-7\/10 {
+  width: 70%; }
+
+.g-9\/10 {
+  width: 90%; }
+
+/**
+	* Twelfths
+	*/
+.g-1\/12 {
+  width: 8.333%; }
+
+.g-5\/12 {
+  width: 41.666%; }
+
+.g-7\/12 {
+  width: 58.333%; }
+
+.g-11\/12 {
+  width: 91.666%; }
+
+/**
+ * If you have set `$responsive` to ‘true’ in `_vars.scss` then you now have
+ * access to these classes. You can define at which breakpoint you’d like an
+ * element to be a certain size, e.g.:
+ *
+ * `<div class="g  g-1/4	g-lap-1/2	g-palm-1/1"> ... </div>`
+ *
+ * This would create a `div` that, at ‘desktop’ sizes, takes up a of-4 of the
+ * horizontal space, a of-2 of that space at ‘tablet’ sizes, and goes full width
+ * at ‘mobile’ sizes.
+ *
+ * Demo: jsfiddle.net/inuitcss/WS4Ge
+ *
+ */
+@media only screen and (max-width: 480px) {
+  /**
+	* Whole
+	*/
+  .g-palm-1\/1 {
+    width: 100%; }
+  /**
+	* Halves
+	*/
+  .g-palm-1\/2, .g-palm-2\/4, .g-palm-3\/6, .g-palm-4\/8, .g-palm-5\/10, .g-palm-6\/12 {
+    width: 50%; }
+  /**
+	* Thirds
+	*/
+  .g-palm-1\/3, .g-palm-2\/6, .g-palm-4\/12 {
+    width: 33.333%; }
+  .g-palm-2\/3, .g-palm-4\/6, .g-palm-8\/12 {
+    width: 66.666%; }
+  /**
+	* Quarters
+	*/
+  .g-palm-1\/4, .g-palm-2\/8, .g-palm-3\/12 {
+    width: 25%; }
+  .g-palm-3\/4, .g-palm-6\/8, .g-palm-9\/12 {
+    width: 75%; }
+  /**
+	* Fifths
+	*/
+  .g-palm-1\/5, .g-palm-2\/10 {
+    width: 20%; }
+  .g-palm-2\/5, .g-palm-4\/10 {
+    width: 40%; }
+  .g-palm-3\/5, .g-palm-6\/10 {
+    width: 60%; }
+  .g-palm-4\/5, .g-palm-8\/10 {
+    width: 80%; }
+  /**
+	* Sixths
+	*/
+  .g-palm-1\/6, .g-palm-2\/12 {
+    width: 16.666%; }
+  .g-palm-5\/6, .g-palm-10\/12 {
+    width: 83.333%; }
+  /**
+	* Eighths
+	*/
+  .g-palm-1\/8 {
+    width: 12.5%; }
+  .g-palm-3\/8 {
+    width: 37.5%; }
+  .g-palm-5\/8 {
+    width: 62.5%; }
+  .g-palm-7\/8 {
+    width: 87.5%; }
+  /**
+	* Tenths
+	*/
+  .g-palm-1\/10 {
+    width: 10%; }
+  .g-palm-3\/10 {
+    width: 30%; }
+  .g-palm-7\/10 {
+    width: 70%; }
+  .g-palm-9\/10 {
+    width: 90%; }
+  /**
+	* Twelfths
+	*/
+  .g-palm-1\/12 {
+    width: 8.333%; }
+  .g-palm-5\/12 {
+    width: 41.666%; }
+  .g-palm-7\/12 {
+    width: 58.333%; }
+  .g-palm-11\/12 {
+    width: 91.666%; } }
+
+@media only screen and (min-width: 481px) and (max-width: 919px) {
+  /**
+	* Whole
+	*/
+  .g-lap-1\/1 {
+    width: 100%; }
+  /**
+	* Halves
+	*/
+  .g-lap-1\/2, .g-lap-2\/4, .g-lap-3\/6, .g-lap-4\/8, .g-lap-5\/10, .g-lap-6\/12 {
+    width: 50%; }
+  /**
+	* Thirds
+	*/
+  .g-lap-1\/3, .g-lap-2\/6, .g-lap-4\/12 {
+    width: 33.333%; }
+  .g-lap-2\/3, .g-lap-4\/6, .g-lap-8\/12 {
+    width: 66.666%; }
+  /**
+	* Quarters
+	*/
+  .g-lap-1\/4, .g-lap-2\/8, .g-lap-3\/12 {
+    width: 25%; }
+  .g-lap-3\/4, .g-lap-6\/8, .g-lap-9\/12 {
+    width: 75%; }
+  /**
+	* Fifths
+	*/
+  .g-lap-1\/5, .g-lap-2\/10 {
+    width: 20%; }
+  .g-lap-2\/5, .g-lap-4\/10 {
+    width: 40%; }
+  .g-lap-3\/5, .g-lap-6\/10 {
+    width: 60%; }
+  .g-lap-4\/5, .g-lap-8\/10 {
+    width: 80%; }
+  /**
+	* Sixths
+	*/
+  .g-lap-1\/6, .g-lap-2\/12 {
+    width: 16.666%; }
+  .g-lap-5\/6, .g-lap-10\/12 {
+    width: 83.333%; }
+  /**
+	* Eighths
+	*/
+  .g-lap-1\/8 {
+    width: 12.5%; }
+  .g-lap-3\/8 {
+    width: 37.5%; }
+  .g-lap-5\/8 {
+    width: 62.5%; }
+  .g-lap-7\/8 {
+    width: 87.5%; }
+  /**
+	* Tenths
+	*/
+  .g-lap-1\/10 {
+    width: 10%; }
+  .g-lap-3\/10 {
+    width: 30%; }
+  .g-lap-7\/10 {
+    width: 70%; }
+  .g-lap-9\/10 {
+    width: 90%; }
+  /**
+	* Twelfths
+	*/
+  .g-lap-1\/12 {
+    width: 8.333%; }
+  .g-lap-5\/12 {
+    width: 41.666%; }
+  .g-lap-7\/12 {
+    width: 58.333%; }
+  .g-lap-11\/12 {
+    width: 91.666%; } }
+
+@media only screen and (min-width: 481px) {
+  /**
+	* Whole
+	*/
+  .g-lap-and-up-1\/1 {
+    width: 100%; }
+  /**
+	* Halves
+	*/
+  .g-lap-and-up-1\/2, .g-lap-and-up-2\/4, .g-lap-and-up-3\/6, .g-lap-and-up-4\/8, .g-lap-and-up-5\/10, .g-lap-and-up-6\/12 {
+    width: 50%; }
+  /**
+	* Thirds
+	*/
+  .g-lap-and-up-1\/3, .g-lap-and-up-2\/6, .g-lap-and-up-4\/12 {
+    width: 33.333%; }
+  .g-lap-and-up-2\/3, .g-lap-and-up-4\/6, .g-lap-and-up-8\/12 {
+    width: 66.666%; }
+  /**
+	* Quarters
+	*/
+  .g-lap-and-up-1\/4, .g-lap-and-up-2\/8, .g-lap-and-up-3\/12 {
+    width: 25%; }
+  .g-lap-and-up-3\/4, .g-lap-and-up-6\/8, .g-lap-and-up-9\/12 {
+    width: 75%; }
+  /**
+	* Fifths
+	*/
+  .g-lap-and-up-1\/5, .g-lap-and-up-2\/10 {
+    width: 20%; }
+  .g-lap-and-up-2\/5, .g-lap-and-up-4\/10 {
+    width: 40%; }
+  .g-lap-and-up-3\/5, .g-lap-and-up-6\/10 {
+    width: 60%; }
+  .g-lap-and-up-4\/5, .g-lap-and-up-8\/10 {
+    width: 80%; }
+  /**
+	* Sixths
+	*/
+  .g-lap-and-up-1\/6, .g-lap-and-up-2\/12 {
+    width: 16.666%; }
+  .g-lap-and-up-5\/6, .g-lap-and-up-10\/12 {
+    width: 83.333%; }
+  /**
+	* Eighths
+	*/
+  .g-lap-and-up-1\/8 {
+    width: 12.5%; }
+  .g-lap-and-up-3\/8 {
+    width: 37.5%; }
+  .g-lap-and-up-5\/8 {
+    width: 62.5%; }
+  .g-lap-and-up-7\/8 {
+    width: 87.5%; }
+  /**
+	* Tenths
+	*/
+  .g-lap-and-up-1\/10 {
+    width: 10%; }
+  .g-lap-and-up-3\/10 {
+    width: 30%; }
+  .g-lap-and-up-7\/10 {
+    width: 70%; }
+  .g-lap-and-up-9\/10 {
+    width: 90%; }
+  /**
+	* Twelfths
+	*/
+  .g-lap-and-up-1\/12 {
+    width: 8.333%; }
+  .g-lap-and-up-5\/12 {
+    width: 41.666%; }
+  .g-lap-and-up-7\/12 {
+    width: 58.333%; }
+  .g-lap-and-up-11\/12 {
+    width: 91.666%; } }
+
+@media only screen and (max-width: 919px) {
+  /**
+	* Whole
+	*/
+  .g-portable-1\/1 {
+    width: 100%; }
+  /**
+	* Halves
+	*/
+  .g-portable-1\/2, .g-portable-2\/4, .g-portable-3\/6, .g-portable-4\/8, .g-portable-5\/10, .g-portable-6\/12 {
+    width: 50%; }
+  /**
+	* Thirds
+	*/
+  .g-portable-1\/3, .g-portable-2\/6, .g-portable-4\/12 {
+    width: 33.333%; }
+  .g-portable-2\/3, .g-portable-4\/6, .g-portable-8\/12 {
+    width: 66.666%; }
+  /**
+	* Quarters
+	*/
+  .g-portable-1\/4, .g-portable-2\/8, .g-portable-3\/12 {
+    width: 25%; }
+  .g-portable-3\/4, .g-portable-6\/8, .g-portable-9\/12 {
+    width: 75%; }
+  /**
+	* Fifths
+	*/
+  .g-portable-1\/5, .g-portable-2\/10 {
+    width: 20%; }
+  .g-portable-2\/5, .g-portable-4\/10 {
+    width: 40%; }
+  .g-portable-3\/5, .g-portable-6\/10 {
+    width: 60%; }
+  .g-portable-4\/5, .g-portable-8\/10 {
+    width: 80%; }
+  /**
+	* Sixths
+	*/
+  .g-portable-1\/6, .g-portable-2\/12 {
+    width: 16.666%; }
+  .g-portable-5\/6, .g-portable-10\/12 {
+    width: 83.333%; }
+  /**
+	* Eighths
+	*/
+  .g-portable-1\/8 {
+    width: 12.5%; }
+  .g-portable-3\/8 {
+    width: 37.5%; }
+  .g-portable-5\/8 {
+    width: 62.5%; }
+  .g-portable-7\/8 {
+    width: 87.5%; }
+  /**
+	* Tenths
+	*/
+  .g-portable-1\/10 {
+    width: 10%; }
+  .g-portable-3\/10 {
+    width: 30%; }
+  .g-portable-7\/10 {
+    width: 70%; }
+  .g-portable-9\/10 {
+    width: 90%; }
+  /**
+	* Twelfths
+	*/
+  .g-portable-1\/12 {
+    width: 8.333%; }
+  .g-portable-5\/12 {
+    width: 41.666%; }
+  .g-portable-7\/12 {
+    width: 58.333%; }
+  .g-portable-11\/12 {
+    width: 91.666%; } }
+
+@media only screen and (min-width: 920px) {
+  /**
+	* Whole
+	*/
+  .g-desk-1\/1 {
+    width: 100%; }
+  /**
+	* Halves
+	*/
+  .g-desk-1\/2, .g-desk-2\/4, .g-desk-3\/6, .g-desk-4\/8, .g-desk-5\/10, .g-desk-6\/12 {
+    width: 50%; }
+  /**
+	* Thirds
+	*/
+  .g-desk-1\/3, .g-desk-2\/6, .g-desk-4\/12 {
+    width: 33.333%; }
+  .g-desk-2\/3, .g-desk-4\/6, .g-desk-8\/12 {
+    width: 66.666%; }
+  /**
+	* Quarters
+	*/
+  .g-desk-1\/4, .g-desk-2\/8, .g-desk-3\/12 {
+    width: 25%; }
+  .g-desk-3\/4, .g-desk-6\/8, .g-desk-9\/12 {
+    width: 75%; }
+  /**
+	* Fifths
+	*/
+  .g-desk-1\/5, .g-desk-2\/10 {
+    width: 20%; }
+  .g-desk-2\/5, .g-desk-4\/10 {
+    width: 40%; }
+  .g-desk-3\/5, .g-desk-6\/10 {
+    width: 60%; }
+  .g-desk-4\/5, .g-desk-8\/10 {
+    width: 80%; }
+  /**
+	* Sixths
+	*/
+  .g-desk-1\/6, .g-desk-2\/12 {
+    width: 16.666%; }
+  .g-desk-5\/6, .g-desk-10\/12 {
+    width: 83.333%; }
+  /**
+	* Eighths
+	*/
+  .g-desk-1\/8 {
+    width: 12.5%; }
+  .g-desk-3\/8 {
+    width: 37.5%; }
+  .g-desk-5\/8 {
+    width: 62.5%; }
+  .g-desk-7\/8 {
+    width: 87.5%; }
+  /**
+	* Tenths
+	*/
+  .g-desk-1\/10 {
+    width: 10%; }
+  .g-desk-3\/10 {
+    width: 30%; }
+  .g-desk-7\/10 {
+    width: 70%; }
+  .g-desk-9\/10 {
+    width: 90%; }
+  /**
+	* Twelfths
+	*/
+  .g-desk-1\/12 {
+    width: 8.333%; }
+  .g-desk-5\/12 {
+    width: 41.666%; }
+  .g-desk-7\/12 {
+    width: 58.333%; }
+  .g-desk-11\/12 {
+    width: 91.666%; } }
+
+/**
+ * If you have set the additional `$responsive-extra` variable to ‘true’ in
+ * `_vars.scss` then you now have access to the following class available to
+ * accomodate much larger screen resolutions.
+ */
+@media only screen and (min-width: 1440px) {
+  /**
+	* Whole
+	*/
+  .g-desk-wide-1\/1 {
+    width: 100%; }
+  /**
+	* Halves
+	*/
+  .g-desk-wide-1\/2, .g-desk-wide-2\/4, .g-desk-wide-3\/6, .g-desk-wide-4\/8, .g-desk-wide-5\/10, .g-desk-wide-6\/12 {
+    width: 50%; }
+  /**
+	* Thirds
+	*/
+  .g-desk-wide-1\/3, .g-desk-wide-2\/6, .g-desk-wide-4\/12 {
+    width: 33.333%; }
+  .g-desk-wide-2\/3, .g-desk-wide-4\/6, .g-desk-wide-8\/12 {
+    width: 66.666%; }
+  /**
+	* Quarters
+	*/
+  .g-desk-wide-1\/4, .g-desk-wide-2\/8, .g-desk-wide-3\/12 {
+    width: 25%; }
+  .g-desk-wide-3\/4, .g-desk-wide-6\/8, .g-desk-wide-9\/12 {
+    width: 75%; }
+  /**
+	* Fifths
+	*/
+  .g-desk-wide-1\/5, .g-desk-wide-2\/10 {
+    width: 20%; }
+  .g-desk-wide-2\/5, .g-desk-wide-4\/10 {
+    width: 40%; }
+  .g-desk-wide-3\/5, .g-desk-wide-6\/10 {
+    width: 60%; }
+  .g-desk-wide-4\/5, .g-desk-wide-8\/10 {
+    width: 80%; }
+  /**
+	* Sixths
+	*/
+  .g-desk-wide-1\/6, .g-desk-wide-2\/12 {
+    width: 16.666%; }
+  .g-desk-wide-5\/6, .g-desk-wide-10\/12 {
+    width: 83.333%; }
+  /**
+	* Eighths
+	*/
+  .g-desk-wide-1\/8 {
+    width: 12.5%; }
+  .g-desk-wide-3\/8 {
+    width: 37.5%; }
+  .g-desk-wide-5\/8 {
+    width: 62.5%; }
+  .g-desk-wide-7\/8 {
+    width: 87.5%; }
+  /**
+	* Tenths
+	*/
+  .g-desk-wide-1\/10 {
+    width: 10%; }
+  .g-desk-wide-3\/10 {
+    width: 30%; }
+  .g-desk-wide-7\/10 {
+    width: 70%; }
+  .g-desk-wide-9\/10 {
+    width: 90%; }
+  /**
+	* Twelfths
+	*/
+  .g-desk-wide-1\/12 {
+    width: 8.333%; }
+  .g-desk-wide-5\/12 {
+    width: 41.666%; }
+  .g-desk-wide-7\/12 {
+    width: 58.333%; }
+  .g-desk-wide-11\/12 {
+    width: 91.666%; } }
+
+/* endif */
+/*------------------------------------*    $PUSH
+\*------------------------------------*/
+/**
+ * Push classes, to move grid items over to the right by certain amounts.
+ */
+/*------------------------------------*    $PULL
+\*------------------------------------*/
+/**
+ * Pull classes, to move grid items over to the right by certain amounts.
+ */
+/*------------------------------------*    $DEBUG
+\*------------------------------------*/
+/* endif */
+/*------------------------------------*    CUSTOM.CSS
+\*------------------------------------*/
+/*------------------------------------*    $UTILITIES
+\*------------------------------------*/
+/*------------------------------------*    $FUNCTIONS
+\*------------------------------------*/
+/*------------------------------------*    $MIXINS
+\*------------------------------------*/
+/*------------------------------------*    $MIXINS
+\*------------------------------------*/
+/*------------------------------------*    $MENUS
+\*------------------------------------*/
+/*------------------------------------*    $MENUS
+\*------------------------------------*/
+/*------------------------------------*    $COLLAPSED ANCHOR
+\*------------------------------------*/
+/*------------------------------------*    $MODIFIERS
+\*------------------------------------*/
+/*------------------------------------*    $BACKGROUND MIXINS
+\*------------------------------------*/
+/*------------------------------------*    $BACKGROUND LINK STATES MIXIN
+\*------------------------------------*/
+/*------------------------------------*    $TYPOGRAPHY MIXINS
+\*------------------------------------*/
+/*------------------------------------*    $TYPOGRAPHIC LINK STATES MIXIN
+\*------------------------------------*/
+/*------------------------------------*    $LAYOUT
+\*------------------------------------*/
+/*------------------------------------*    $ISLAND MIXINS
+\*------------------------------------*/
+/*------------------------------------*    $MARGIN AND PADDING
+\*------------------------------------*/
+/**
+ * these mixins shouldn't need to be used directly except for in the placeholders
+ * defined in _layouts.scss
+ *
+ * prefer extending those placeholders from your selectors over including these mixins
+ *
+ * this will reduce duplication of the same properties over your stylesheets, while
+ * allowing you to reuse consistent spacing across your stylesheets
+ *
+ * situations on when to rather use an include is if you need to override margin or
+ * padding in a media query when the placeholder has been extended. Due to source
+ * order, you will not always be able to override the placeholders.
+ * Including the relevant mixin will then allow you to override the properties in
+ * your media query.
+ */
+/*------------------------------------*    $MARGIN
+\*------------------------------------*/
+/*------------------------------------*    $PADDING
+\*------------------------------------*/
+/*------------------------------------*    $WRAP MIXINS
+\*------------------------------------*/
+/*------------------------------------*    $BASE
+\*------------------------------------*/
+/*------------------------------------*    $BASE
+\*------------------------------------*/
+/*------------------------------------*    $DOCUMENT
+\*------------------------------------*/
+/**
+ * This section houses styles for the base elements of the page, generally body and
+ * html
+ */
+/**
+ * Fix fatty fonts in Chrome and Firefox on Mac:
+ * http://maximilianhoffmann.com/posts/better-font-rendering-on-osx
+ */
+/**
+ * Use sticky footer:
+ * http://philipwalton.github.io/solved-by-flexbox/demos/sticky-footer/
+ *
+ * requires flex: 1 0 auto; on primary content
+ */
+/**
+ * Prevent Chrome and Safari from flashing when a user taps on mobile
+ */
+html {
+  -webkit-tap-highlight-color: transparent; }
+
+/**
+ * get 60fps scrolling by disabling pointer events:
+ * http://www.thecssninja.com/javascript/pointer-events-60fps
+ */
+.disable-hover,
+.disable-hover * {
+  pointer-events: none !important; }
+
+/*------------------------------------*    $FONTS
+\*------------------------------------*/
+/*------------------------------------*    $ICON FONT
+\*------------------------------------*/
+/*------------------------------------*    $BASE FONT
+\*------------------------------------*/
+@font-face {
+  font-family: "OpenSans";
+  src: url("../font/open-sans/OpenSans-Regular-webfont.eot");
+  src: url("../font/open-sans/OpenSans-Regular-webfont.eot?#iefix") format("embedded-opentype"), url("../font/open-sans/OpenSans-Regular-webfont.woff2") format("woff2"), url("../font/open-sans/OpenSans-Regular-webfont.woff") format("woff"), url("../font/open-sans/OpenSans-Regular-webfont.ttf") format("truetype"), url("../font/open-sans/OpenSans-Regular-webfont.svg#OpenSans-Regular-webfont") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: "OpenSans";
+  src: url("../font/open-sans/OpenSans-Regular-webfont.eot");
+  src: url("../font/open-sans/OpenSans-Regular-webfont.eot?#iefix") format("embedded-opentype"), url("../font/open-sans/OpenSans-Regular-webfont.woff2") format("woff2"), url("../font/open-sans/OpenSans-Regular-webfont.woff") format("woff"), url("../font/open-sans/OpenSans-Regular-webfont.ttf") format("truetype"), url("../font/open-sans/OpenSans-Regular-webfont.svg#OpenSans-Regular-webfont") format("svg");
+  font-weight: normal;
+  font-style: italic; }
+
+@font-face {
+  font-family: "OpenSans";
+  src: url("../font/open-sans/OpenSans-Regular-webfont.eot");
+  src: url("../font/open-sans/OpenSans-Regular-webfont.eot?#iefix") format("embedded-opentype"), url("../font/open-sans/OpenSans-Regular-webfont.woff2") format("woff2"), url("../font/open-sans/OpenSans-Regular-webfont.woff") format("woff"), url("../font/open-sans/OpenSans-Regular-webfont.ttf") format("truetype"), url("../font/open-sans/OpenSans-Regular-webfont.svg#OpenSans-Regular-webfont") format("svg");
+  font-weight: bold;
+  font-style: normal; }
+
+@font-face {
+  font-family: "OpenSans";
+  src: url("../font/open-sans/OpenSans-Light-webfont.eot");
+  src: url("../font/open-sans/OpenSans-Light-webfont.eot?#iefix") format("embedded-opentype"), url("../font/open-sans/OpenSans-Light-webfont.woff2") format("woff2"), url("../font/open-sans/OpenSans-Light-webfont.woff") format("woff"), url("../font/open-sans/OpenSans-Light-webfont.ttf") format("truetype"), url("../font/open-sans/OpenSans-Light-webfont.svg#OpenSans-Light-webfont") format("svg");
+  font-weight: lighter;
+  font-style: normal; }
+
+@font-face {
+  font-family: "OpenSans";
+  src: url("../font/open-sans/OpenSans-Regular-webfont.eot");
+  src: url("../font/open-sans/OpenSans-Regular-webfont.eot?#iefix") format("embedded-opentype"), url("../font/open-sans/OpenSans-Regular-webfont.woff2") format("woff2"), url("../font/open-sans/OpenSans-Regular-webfont.woff") format("woff"), url("../font/open-sans/OpenSans-Regular-webfont.ttf") format("truetype"), url("../font/open-sans/OpenSans-Regular-webfont.svg#OpenSans-Regular-webfont") format("svg");
+  font-weight: bold;
+  font-style: italic; }
+
+/*------------------------------------*    $HEADER FONT
+\*------------------------------------*/
+@font-face {
+  font-family: "Rokkitt";
+  src: url("../font/rokkitt/rokkitt-regular-webfont.woff2") format("woff2"), url("../font/rokkitt/rokkitt-regular-webfont.woff") format("woff"), url("../font/rokkitt/Rokkitt-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: "Rokkitt";
+  src: url("../font/rokkitt/rokkitt-bold-webfont.woff2") format("woff2"), url("../font/rokkitt/rokkitt-bold-webfont.woff") format("woff"), url("../font/rokkitt/Rokkitt-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal; }
+
+/*------------------------------------*    $FORMS
+\*------------------------------------*/
+/*------------------------------------*    $FORMS
+\*------------------------------------*/
+label {
+  cursor: pointer;
+  display: block;
+  margin-bottom: 7.2px;
+  margin-bottom: 0.4rem; }
+
+textarea {
+  resize: none;
+  max-height: 120.0px;
+  max-height: 6.66667rem; }
+
+button, input, select, textarea {
+  vertical-align: baseline; }
+
+input, input[type='search'], textarea {
+  border-radius: 0; }
+
+input, textarea {
+  border: 0px solid;
+  height: auto;
+  line-height: normal;
+  padding: .5em; }
+
+input, textarea, select {
+  margin-bottom: 7.2px;
+  margin-bottom: 0.4rem;
+  display: block;
+  width: 100%;
+  -webkit-appearance: none;
+  outline: none; }
+
+input[type="radio"],
+input[type="checkbox"] {
+  width: auto; }
+
+input[type="password"] {
+  letter-spacing: .3em; }
+
+input[type="password"]::-webkit-input-placeholder {
+  letter-spacing: 0; }
+
+input[type="password"]::-moz-placeholder {
+  letter-spacing: 0; }
+
+input[type="password"]:-ms-input-placeholder {
+  letter-spacing: 0; }
+
+input[type="password"]::placeholder {
+  letter-spacing: 0; }
+
+fieldset {
+  border: 0px;
+  padding: 0px;
+  margin: 0px; }
+
+/*------------------------------------*    $HEADINGS
+\*------------------------------------*/
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+  line-height: 1; }
+
+/*------------------------------------*    $IMAGES
+\*------------------------------------*/
+/**
+ * Fix SVG images not scaling proportionately in IE9, IE10, IE11
+ */
+img[imageCover] {
+  position: absolute; }
+
+/*------------------------------------*    $LINKS
+\*------------------------------------*/
+a, button, .btn--base, .menu__sub {
+  transition: all 150ms ease-in-out; }
+  a:active, button:active, .btn--base:active, .menu__sub:active {
+    transition: none; }
+
+a {
+  text-decoration: none; }
+  a, a:hover {
+    outline: 0; }
+
+/*------------------------------------*    $LISTS
+\*------------------------------------*/
+.menu--primary, .menu__sub {
+  list-style-type: none;
+  padding: 0;
+  margin: 0; }
+
+/*------------------------------------*    $RULES
+\*------------------------------------*/
+/*------------------------------------*    $TABLES
+\*------------------------------------*/
+th, td {
+  border: 1px solid; }
+
+/*------------------------------------*    $BASE
+\*------------------------------------*/
+i {
+  font-style: normal; }
+
+blockquote {
+  font-style: italic;
+  font-size: 2rem;
+  padding: 27px;
+  padding: 1.5rem; }
+
+kbd {
+  border: 1px solid #e6e6e6;
+  border-radius: 2px;
+  font-size: 85%;
+  padding: .25em .5em;
+  vertical-align: middle; }
+
+hr {
+  border: 1px solid;
+  border-left: 0;
+  border-right: 0;
+  border-top: 0; }
+
+h1, h2, h3 {
+  font-family: "Rokkitt", Arial, sans-serif;
+  line-height: .8;
+  vertical-align: middle;
+  font-weight: bold; }
+
+h1 small {
+  display: block;
+  font-weight: normal; }
+
+/*------------------------------------*    $COMPONENTS
+\*------------------------------------*/
+/*------------------------------------*    $COMPONENTS
+\*------------------------------------*/
+/*------------------------------------*    $BUTTONS
+\*------------------------------------*/
+.btn--base {
+  border: 1px solid;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 9px 36px;
+  padding: 0.5rem 2rem; }
+
+.btn--base {
+  color: #272727; }
+  .btn--base:hover, .btn--base:focus {
+    color: #fff;
+    background-color: #272727;
+    border-color: #272727; }
+  .btn--base:active {
+    background-color: transparent;
+    color: #272727; }
+
+/*------------------------------------*    $LOADERS
+\*------------------------------------*/
+sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  display: block;
+  color: white;
+  z-index: 20;
+  width: 40px;
+  transition: all 175ms ease-in-out;
+  overflow: hidden; }
+
+.sidebar--in {
+  width: 260px;
+  background-color: #404040; }
+
+.logo {
+  position: relative;
+  padding: 0 36px;
+  padding: 0 2rem;
+  display: block;
+  width: 260px;
+  transform: translateX(-100%);
+  transition: all 175ms ease-in-out 0ms;
+  opacity: 0;
+  z-index: 10; }
+  .sidebar--in .logo {
+    transform: translateX(0%);
+    opacity: 1;
+    transition: all 175ms ease-in-out 80ms; }
+
+/*------------------------------------*    $MENUS
+\*------------------------------------*/
+/*------------------------------------*    $MENU
+\*------------------------------------*/
+.menu--primary-container {
+  padding: 29.88px 0;
+  padding: 1.66rem 0; }
+
+.menu--primary {
+  display: block;
+  padding: 29.88px 0;
+  padding: 1.66rem 0; }
+
+.menu__item {
+  display: block;
+  text-align: right; }
+  .menu__item > a {
+    position: relative;
+    font-family: "Rokkitt", Arial, sans-serif;
+    display: block;
+    text-transform: uppercase;
+    outline: 0;
+    padding-left: 6.3px;
+    padding-left: 0.35rem;
+    padding-right: 4.5px;
+    padding-right: 0.25rem;
+    padding-top: 9.9px;
+    padding-top: 0.55rem;
+    padding-bottom: 7.2px;
+    padding-bottom: 0.4rem;
+    line-height: normal;
+    vertical-align: middle;
+    margin-left: .15rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    width: 1.95rem;
+    color: transparent;
+    opacity: .75;
+    transition: background-color 175ms ease-in-out, width 175ms ease-in-out, font-size 175ms ease-in-out, color 175ms ease-in-out, background-color 175ms ease-in-out, border-radius 175ms ease-in-out, margin 0ms ease-in-out, padding 0ms ease-in-out; }
+    .menu__item > a span:first-letter {
+      color: white;
+      font-size: 1.33333rem;
+      transition: all 175ms ease-in-out; }
+    .menu__item > a span {
+      font-size: 0px;
+      display: inline-block;
+      position: relative;
+      transition: all 175ms ease-in-out; }
+      .sidebar--in .menu__item > a span {
+        font-size: 1.33333rem; }
+      .menu__item > a span:before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 63%;
+        left: 0;
+        right: 0;
+        border-bottom: 1px solid;
+        color: inherit;
+        opacity: 0; }
+    .menu__item > a:after {
+      content: "";
+      display: block;
+      background-color: #404040;
+      transition: all 175ms ease-in-out;
+      height: 2rem;
+      border-radius: 100%;
+      width: 2rem;
+      position: absolute;
+      z-index: -1;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%); }
+      .sidebar--in .menu__item > a:after {
+        width: 50vw;
+        height: 50vw; }
+    .sidebar--in .menu__item > a {
+      width: 14.44444rem;
+      width: auto;
+      line-height: 2.5;
+      color: white;
+      opacity: 1;
+      padding-left: 36px;
+      padding-left: 2rem;
+      padding-right: 36px;
+      padding-right: 2rem;
+      border-radius: 0%;
+      margin: 0;
+      transition: background-color 175ms ease-in-out 75ms, width 175ms ease-in-out, font-size 175ms ease-in-out, color 175ms ease-in-out, background-color 175ms ease-in-out, border-radius 175ms ease-in-out, margin 0ms ease-in-out, padding 0ms ease-in-out; }
+      .sidebar--in .menu__item > a:hover, .sidebar--in .menu__item > a:focus {
+        color: #88cfc3; }
+      .sidebar--in .menu__item > a:active {
+        color: #acded5; }
+  .menu__sub .menu__item {
+    display: block; }
+
+.menu__item--current > a,
+.menu__item--current-parent > a, .menu__item--current > a:hover,
+.menu__item--current-parent > a:hover, .menu__item--current > a:focus,
+.menu__item--current-parent > a:focus, .menu__item--current > a:active,
+.menu__item--current-parent > a:active {
+  cursor: default;
+  color: transparent; }
+  .menu__item--current > a span:before,
+  .menu__item--current-parent > a span:before, .menu__item--current > a:hover span:before,
+  .menu__item--current-parent > a:hover span:before, .menu__item--current > a:focus span:before,
+  .menu__item--current-parent > a:focus span:before, .menu__item--current > a:active span:before,
+  .menu__item--current-parent > a:active span:before {
+    opacity: 1; }
+  .menu__item--current > a span:first-letter,
+  .menu__item--current-parent > a span:first-letter, .menu__item--current > a:hover span:first-letter,
+  .menu__item--current-parent > a:hover span:first-letter, .menu__item--current > a:focus span:first-letter,
+  .menu__item--current-parent > a:focus span:first-letter, .menu__item--current > a:active span:first-letter,
+  .menu__item--current-parent > a:active span:first-letter {
+    color: #acded5; }
+  .sidebar--in .menu__item--current > a, .sidebar--in
+  .menu__item--current-parent > a, .sidebar--in .menu__item--current > a:hover, .sidebar--in
+  .menu__item--current-parent > a:hover, .sidebar--in .menu__item--current > a:focus, .sidebar--in
+  .menu__item--current-parent > a:focus, .sidebar--in .menu__item--current > a:active, .sidebar--in
+  .menu__item--current-parent > a:active {
+    color: #acded5; }
+
+.menu__item--current > a[pageScroll],
+.menu__item--current-parent > a[pageScroll] {
+  cursor: cursor;
+  color: white; }
+  .menu__item--current > a[pageScroll] span:before,
+  .menu__item--current-parent > a[pageScroll] span:before {
+    opacity: 0; }
+  .menu__item--current > a[pageScroll]:hover,
+  .menu__item--current-parent > a[pageScroll]:hover, .menu__item--current > a[pageScroll]:focus,
+  .menu__item--current-parent > a[pageScroll]:focus {
+    color: #d0ede7; }
+  .menu__item--current > a[pageScroll]:active,
+  .menu__item--current-parent > a[pageScroll]:active {
+    color: #acded5; }
+
+.menu__sub {
+  background-color: #fff;
+  max-height: 0;
+  overflow: hidden;
+  position: absolute; }
+  a:hover + .menu__sub, .menu__sub:hover {
+    border: 1px solid #404040;
+    max-height: none;
+    overflow: visible; }
+  .menu__sub a {
+    min-width: 225px;
+    white-space: nowrap; }
+  a:hover + .menu__sub > .menu__item a, .menu__sub:hover > .menu__item > a {
+    max-height: 8em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    opacity: 1; }
+
+.menu__sub .menu__sub {
+  top: 0;
+  left: 100%; }
+
+/*------------------------------------*    $PRIMARY MENU
+\*------------------------------------*/
+.menu--primary {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 50%;
+  transition: all 0ms linear;
+  transform: translateZ(0) translateY(-50%) translateX(-10%); }
+  .sidebar--in .menu--primary {
+    transform: translateZ(0) translateY(-50%) translateX(0%); }
+  .menu--primary .menu__item {
+    letter-spacing: .15em; }
+
+/*------------------------------------*    $MENU TOGGLE
+\*------------------------------------*/
+.menu-toggle {
+  display: none; }
+  .menu-toggle:focus {
+    outline: none; }
+  @media only screen and (max-width: 919px) {
+    .menu-toggle {
+      display: inline-block; } }
+
+/*------------------------------------*    $PAGES
+\*------------------------------------*/
+/*------------------------------------*    $PAGES
+\*------------------------------------*/
+persona {
+  display: block;
+  position: relative;
+  background-color: #acded5; }
+
+.persona {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  text-align: center;
+  transform: translateY(-50%); }
+
+.persona__main {
+  height: 40px;
+  margin-bottom: 0px;
+  line-height: 1;
+  font-family: "OpenSans", Arial, sans-serif;
+  font-weight: normal; }
+  .persona__main span {
+    line-height: .83;
+    position: relative;
+    font-family: "Rokkitt", Arial, sans-serif;
+    font-size: 1.2em; }
+    .persona__main span:after {
+      content: "";
+      display: block;
+      position: absolute;
+      color: inherit;
+      border-bottom: 3px solid;
+      top: 76%;
+      left: .03em;
+      right: .03em; }
+  .persona__main.typing:after {
+    content: "";
+    display: inline-block;
+    color: inherit;
+    border-right: 2px solid;
+    height: 100%;
+    vertical-align: middle;
+    animation-timing-function: ease-in-out;
+    animation-duration: 1s;
+    animation-iteration-count: infinite; }
+
+.persona__img {
+  margin: 0 auto;
+  display: block;
+  width: 220px;
+  margin-bottom: 29.88px;
+  margin-bottom: 1.66rem; }
+
+.portfolio-item:before {
+  padding-bottom: 100%; }
+
+.portfolio-item__image {
+  margin-bottom: 0px; }
+
+.portfolio-item__over {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: auto;
+  right: auto;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transform: translateX(100%);
+  z-index: 5;
+  animation-timing-function: ease-out;
+  animation-duration: 250ms;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-fill-mode: forwards; }
+  .portfolio-item-hold .portfolio-item__over {
+    transform: translate(0%, 0%); }
+  .portfolio-item-out-left .portfolio-item__over {
+    animation-direction: reverse;
+    animation-fill-mode: backwards; }
+  .portfolio-item-out-top .portfolio-item__over {
+    animation-direction: reverse;
+    animation-fill-mode: backwards; }
+  .portfolio-item-out-right .portfolio-item__over {
+    animation-direction: reverse;
+    animation-fill-mode: backwards; }
+  .portfolio-item-out-bottom .portfolio-item__over {
+    animation-direction: reverse;
+    animation-fill-mode: backwards; }
+
+.portfolio-item__center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  bottom: auto;
+  right: auto;
+  width: 100%;
+  transform: translate(-50%, -50%);
+  padding: 36px;
+  padding: 2rem; }
+
+.portfolio-item__title {
+  font-family: "Rokkitt", Arial, sans-serif;
+  text-align: center;
+  text-transform: lowercase;
+  color: #404040;
+  vertical-align: middle;
+  line-height: .8; }
+
+.portfolio-item__short {
+  color: #404040;
+  text-align: center;
+  margin-bottom: 0px; }
+
+[imageCover] {
+  max-width: none;
+  max-height: none;
+  width: auto;
+  height: auto; }
+
+.google-map-wrapper {
+  position: relative; }
+
+.sebm-google-map-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%; }
+
+.google-map-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 5;
+  background-color: rgba(245, 245, 245, 0.8); }
+
+/*------------------------------------*    $VENDOR
+\*------------------------------------*/
+/*------------------------------------*    $VENDOR STYLES
+\*------------------------------------*/
+/*------------------------------------*    $AUTOCOMPLETE
+\*------------------------------------*/
+/*------------------------------------*    $DATEPICKER
+\*------------------------------------*/
+/*------------------------------------*    $FILE UPLOAD
+\*------------------------------------*/
+/*------------------------------------*    $TOOLTIPS
+\*------------------------------------*/
+/*------------------------------------*    $WYSIWYG
+\*------------------------------------*/
+/*------------------------------------*    $MODIFIERS
+\*------------------------------------*/
+/**
+ * modifieres must come last that classes can be applied directly
+ * to markup to override styles
+ */
+/*------------------------------------*    $MODIFIERS
+\*------------------------------------*/
+/*------------------------------------*    $BACKGROUND
+\*------------------------------------*/
+/*------------------------------------*    $BACKGROUNDS
+\*------------------------------------*/
+/*------------------------------------*    $BACKGROUND COLORS
+\*------------------------------------*/
+.bgc--primary-dk {
+  background-color: #88cfc3; }
+
+.bgc--primary {
+  background-color: #acded5; }
+
+.bgc--primary-lt {
+  background-color: #d0ede7; }
+
+.bgc--secondary-dk {
+  background-color: #e8ca21; }
+
+.bgc--secondary {
+  background-color: #edd54f; }
+
+.bgc--secondary-lt {
+  background-color: #ffe12f; }
+
+.bgc--tertiary-dk {
+  background-color: #f2512f; }
+
+.bgc--tertiary {
+  background-color: #f5795f; }
+
+.bgc--tertiary-lt {
+  background-color: #f49f8f; }
+
+.bgc--base-dk {
+  background-color: #272727; }
+
+.bgc--base {
+  background-color: #404040; }
+
+.bgc--base-lt {
+  background-color: #a1a1a1; }
+
+.bgc--base-ltr {
+  background-color: #e6e6e6; }
+
+/*------------------------------------*    $BACKGROUND LINK STATES
+\*------------------------------------*/
+/*------------------------------------*    $TYPOGRAPHY
+\*------------------------------------*/
+/*------------------------------------*    $TYPOGRAPHY
+\*------------------------------------*/
+/*------------------------------------*    $ALIGNMENT
+\*------------------------------------*/
+.text--right {
+  text-align: right; }
+
+/*------------------------------------*    $FONT COLOR MODIFIERS
+\*------------------------------------*/
+a {
+  color: #acded5; }
+
+a {
+  color: #acded5; }
+  a:hover, a:focus {
+    color: #d0ede7; }
+  a:active {
+    color: #88cfc3; }
+
+/*------------------------------------*    $FONT FAMILY
+\*------------------------------------*/
+/*------------------------------------*    $VISIBILITY
+\*------------------------------------*/
+/**
+ * Hide from both screenreaders and browsers: h5bp.com/u
+ */
+.hidden {
+  display: none;
+  visibility: hidden; }
+
+/**
+ * Hide content off-screen without resorting to `display:none;`, also provide
+ * breakpoint specific hidden elements.
+ */
+.accessibility,
+.visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px; }
+  .focusable.accessibility:active,
+  .focusable.visuallyhidden:active, .focusable.accessibility:focus,
+  .focusable.visuallyhidden:focus {
+    position: static;
+    clip: auto;
+    width: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible; }
+
+@media only screen and (max-width: 480px) {
+  .accessibility--palm,
+  .visuallyhidden--palm {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px; } }
+
+@media only screen and (min-width: 481px) and (max-width: 919px) {
+  .accessibility--lap,
+  .visuallyhidden--lap {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px; } }
+
+@media only screen and (min-width: 481px) {
+  .accessibility--lap-and-up,
+  .visuallyhidden--lap-and-up {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px; } }
+
+@media only screen and (max-width: 919px) {
+  .accessibility--portable,
+  .visuallyhidden--portable {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px; } }
+
+@media only screen and (min-width: 920px) {
+  .accessibility--desk,
+  .visuallyhidden--desk {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px; } }
+
+@media only screen and (min-width: 1440px) {
+  .accessibility--desk-wide,
+  .visuallyhidden--desk-wide {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px; } }
+
+/*------------------------------------*    $WYSIWYG CLASSES
+\*------------------------------------*/
+/*------------------------------------*    $TINYMCE
+\*------------------------------------*/
+/*------------------------------------*    $CKEDITOR
+\*------------------------------------*/
+/*------------------------------------*    $LAYOUT
+\*------------------------------------*/
+/**
+ * layout, as with modifier, must come last that classes can be applied directly
+ * to markup as modifiers
+ */
+/*------------------------------------*    $ALL LAYOUT
+\*------------------------------------*/
+/*------------------------------------*    $DISPLAY
+\*------------------------------------*/
+/*------------------------------------*    $FOOTER
+\*------------------------------------*/
+/*------------------------------------*    $GRID
+\*------------------------------------*/
+/**
+ * Extend grid modifiers here
+ */
+/*------------------------------------*    $HEADER
+\*------------------------------------*/
+/*------------------------------------*		$ISLANDS
+\*------------------------------------*/
+.island {
+  padding-top: 5.5rem;
+  padding-bottom: 5.5rem; }
+
+/*------------------------------------*    $MARGIN
+\*------------------------------------*/
+.portfolio-item__title, .portfolio-item__short {
+  margin-bottom: 36px;
+  margin-bottom: 2rem; }
+
+.push--bottom {
+  margin-bottom: 27px;
+  margin-bottom: 1.5rem; }
+
+.flush--bottom {
+  margin-bottom: 0; }
+
+/*------------------------------------*    $PADDING
+\*------------------------------------*/
+.google-map-overlay, .soft--large {
+  padding: 36px;
+  padding: 2rem; }
+
+.soft--large--top {
+  padding-top: 36px;
+  padding-top: 2rem; }
+
+.soft--top {
+  padding-top: 27px;
+  padding-top: 1.5rem; }
+
+/*------------------------------------*    $WRAPS
+\*------------------------------------*/
+.wrap--large, .wrap, .wrap--small {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem; }
+
+/**
+ * Generates classes and placeholders for wraps and their widths
+ * e.g.
+
+  %wrap-width--large { max-width: 1280px;}
+  .wrap--large { ... }
+  %wrap-width        { max-width: 960px;}
+  .wrap { ... }
+  %wrap-width--small { max-width: 640px;}
+  .wrap--small { ... }
+ */
+.wrap--large {
+  max-width: 1200px; }
+
+.wrap {
+  max-width: 1280px; }
+
+.wrap--small, .content--left {
+  max-width: 960px; }
+
+.content--left {
+  margin-left: 0px; }
+
+/*------------------------------------*    $ANIMATIONS
+\*------------------------------------*/
+/*------------------------------------*    $ANIMATIONS
+\*------------------------------------*/
+/*------------------------------------*    $ANIMATIONS
+\*------------------------------------*/
+@keyframes flash {
+  0% {
+    opacity: 0; }
+  40% {
+    opacity: 0; }
+  50% {
+    opacity: 1; }
+  100% {
+    opacity: 0; } }
+
+.persona__main.typing:after, .anim-flash {
+  animation-name: flash; }
+
+@keyframes in-left {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0; }
+  100% {
+    transform: translateX(0);
+    opacity: 1; } }
+
+.portfolio-item-in-left .portfolio-item__over, .portfolio-item-out-right .portfolio-item__over, .anim-in-left {
+  animation-name: in-left; }
+
+@keyframes in-right {
+  0% {
+    transform: translateX(100%);
+    opacity: 0; }
+  100% {
+    transform: translateX(0);
+    opacity: 1; } }
+
+.portfolio-item-in-right .portfolio-item__over, .portfolio-item-out-left .portfolio-item__over, .anim-in-right {
+  animation-name: in-right; }
+
+@keyframes in-bottom {
+  0% {
+    transform: translateY(100%);
+    opacity: 0; }
+  100% {
+    transform: translateY(0);
+    opacity: 1; } }
+
+.portfolio-item-in-bottom .portfolio-item__over, .portfolio-item-out-top .portfolio-item__over, .anim-in-bottom {
+  animation-name: in-bottom; }
+
+@keyframes in-top {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0; }
+  100% {
+    transform: translateY(0);
+    opacity: 1; } }
+
+.portfolio-item-in-top .portfolio-item__over, .portfolio-item-out-bottom .portfolio-item__over, .anim-in-top {
+  animation-name: in-top; }
+
+/**
+ * import print styles
+ */
