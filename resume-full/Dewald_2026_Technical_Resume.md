@@ -6,7 +6,7 @@ LinkedIn: linkedin.com/in/dewaldlaubscher | GitHub: https://github.com/dewwwald
 
 ## Professional Summary
 
-Senior software engineer and technical leader with 10+ years of experience building full-stack, platform, and data-intensive systems across startup, acquisition, and enterprise environments. Recent work at Intuit Mailchimp focuses on platform infrastructure, legacy modernization, large-scale data processing, microservice migrations, developer productivity, and AI-assisted engineering workflows. Strong background in pragmatic architecture, distributed systems, DDD, dependency injection, modular design, and mentoring engineers through complex technical work.
+Senior software engineer and technical leader with 12+ years of experience building full-stack, platform, and data-intensive systems across startup, acquisition, and enterprise environments. Recent work at Intuit Mailchimp focuses on platform infrastructure, legacy modernization, large-scale data processing, microservice migrations, developer productivity, and AI-assisted engineering workflows. Strong background in pragmatic architecture, distributed systems, DDD, dependency injection, modular design, and mentoring engineers through complex technical work.
 
 ## Technical Highlights
 
@@ -58,7 +58,7 @@ Johannesburg, South Africa
 
 ### Earlier Experience
 
-**Developer | Sep 2014 - Sep 2019**
+**Developer | Feb 2014 - Sep 2019**
 
 - Delivered 80+ websites and full-stack web projects across agency, product, and client environments, building a foundation in front-end, back-end, deployment, client communication, and production support.
 - Earlier agency work, including the CubeZoo-era period when the original personal website was created, now serves as background to a broader platform and technical leadership career.
