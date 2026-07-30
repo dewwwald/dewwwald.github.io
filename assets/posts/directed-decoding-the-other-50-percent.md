@@ -1,4 +1,4 @@
-# The AI Got Me Halfway There: Building a Query Engine an LLM Can Actually Be Trusted With
+# Directed Decoding: The Other 50 Percent
 
 I typed "give me all items that have name gadget and price 50" into a chat box wired up to a local model, and it came back with a clean, correctly-shaped JSON query. I ran it against the database. It worked. That took about an hour, and it felt like the whole problem — natural language in, structured query out, demo over.
 
@@ -19,8 +19,14 @@ That's the actual problem directed decoding is for. Not "make the model smarter.
 Before any of that, I needed something to constrain the model *against*. So the project didn't start with the LLM at all — it started with a tiny, custom AST:
 
 ```
-Node { operand: AND | OR, action: EQUALS | NOT_EQUALS | CONTAINS | NOT_CONTAINS,
-       path: "$.items[]" style JSONPath-lite, value: string, then: Node[]? }
+Node {
+  operand: AND | OR
+  action:  EQUALS | NOT_EQUALS | CONTAINS | NOT_CONTAINS
+  path:    JSONPath-lite string, e.g. "$.items[]"
+  value:   string
+  then:    Node[]?
+    (nested, applied per-element under a wildcard path)
+}
 ```
 
 An array of these nodes, each optionally nesting a `then` array of child nodes applied per-element when a path ends in a wildcard. Small enough to hold in my head, small enough to validate exhaustively, expressive enough to answer real questions against a real SQLite-backed dataset. I built the matcher and the persistence layer first, with no model anywhere near it, specifically so the grammar the LLM would eventually target was solid before I asked anything to generate it.
@@ -30,18 +36,23 @@ An array of these nodes, each optionally nesting a `then` array of child nodes a
 The first LLM integration was exactly the demo I described at the top. A plain-English description of the grammar as a system prompt:
 
 ```
-Generate a JSON array of "Node" objects representing a search AST. Respond with
-ONLY the JSON array: no prose, no markdown code fences.
+Generate a JSON array of "Node" objects representing a search
+AST. Respond with ONLY the JSON array: no prose, no code fences.
 
 Each Node object has exactly these keys:
-  "operand": "AND" | "OR" - how this node combines with the previous one...
+  "operand": "AND" | "OR"
+    - combines this node with the previous one; always "AND"
+      on the first node (never null, never omitted)
   "action": "EQUALS" | "NOT_EQUALS" | "CONTAINS" | "NOT_CONTAINS"
-  "path": a JSONPath-like string, e.g. "$.name" or "$.items[]"...
+  "path": a JSONPath-like string, e.g. "$.name" or "$.items[]"
+    - "[]" means "iterate every element"; use "then" to check
+      fields on each element instead of chaining after "[]"
   "value": a string to compare against
-  "then": optional; a nested array of Node objects applied to each element...
+  "then": optional; nested Node[] applied to each element when
+    "path" ends in "[]"
 ```
 
-Send the prompt, get a response, `json.parseFromSlice` it, hope. When it worked, it looked exactly like real guided decoding — the output matched the grammar. When it didn't, the process crashed on a malformed field or just produced nonsense that happened to parse.
+Send the prompt, get a response, run it through `json.parseFromSlice`, and hope. When it worked, it looked exactly like real guided decoding — the output matched the grammar. When it didn't, the process crashed on a malformed field or just produced nonsense that happened to parse.
 
 I was calling this "guided decoding" in my own head until I was asked, directly, whether it actually was. The honest answer was no. This was post-hoc validation: check a finished response and retry if it's wrong. Real constrained decoding steers generation at the token level — masking invalid next-tokens before they're ever produced — and a plain chat-completions call doesn't expose the logits you'd need to do that. I'd built a spell-checker, not a grammar. Worth having, but not what I thought I'd built, and worth stopping to correct rather than letting the description drift further from the reality.
 
@@ -59,18 +70,32 @@ That meant writing a real JSON Schema — not the ad-hoc description I'd been ha
     "node": {
       "type": "object",
       "properties": {
-        "operand": { "type": "string", "enum": ["AND", "OR"] },
-        "action": { "type": "string", "enum": ["EQUALS", "NOT_EQUALS", "CONTAINS", "NOT_CONTAINS"] },
+        "operand": {
+          "type": "string",
+          "enum": ["AND", "OR"]
+        },
+        "action": {
+          "type": "string",
+          "enum": [
+            "EQUALS", "NOT_EQUALS",
+            "CONTAINS", "NOT_CONTAINS"
+          ]
+        },
         "path": { "type": "string" },
         "value": { "type": "string" },
         "then": {
           "anyOf": [
             { "type": "null" },
-            { "type": "array", "items": { "$ref": "#/$defs/node" } }
+            {
+              "type": "array",
+              "items": { "$ref": "#/$defs/node" }
+            }
           ]
         }
       },
-      "required": ["operand", "action", "path", "value"],
+      "required": [
+        "operand", "action", "path", "value"
+      ],
       "additionalProperties": false
     }
   }
@@ -91,7 +116,7 @@ I kept the validator anyway. That turned out to be the right call, for a reason 
 
 A few sessions later, live testing surfaced a query that failed: "items that cost 50." Schema-valid JSON came back every time. It was also useless — the model had nowhere to put "cost," because neither the AST's grammar doc nor the JSON Schema said one word about what the underlying *data* actually looked like. Both only describe the AST's own shape: operand, action, path, value, then. Nothing in either document says "and by the way, the field is called `price`."
 
-That's the sentence that mattered most in this whole project: **a schema constrains shape, not intent.** `additionalProperties: false` and an `enum` will stop the model from inventing a key called `"operand"` that isn't `"AND"` or `"OR"` — that's a closed, checkable set. It cannot stop the model from confidently mapping "cost" onto a field that doesn't exist, because "cost means price" isn't a shape problem, it's a meaning problem, and meaning isn't something a JSON Schema has any vocabulary for.
+That's the sentence that mattered most in this whole project: **a schema constrains shape, not intent.** `additionalProperties: false` stops the model from inventing a key that isn't one of the five defined ones; the `enum` on `operand` separately stops it from writing a value outside `"AND"`/`"OR"` once that key exists. Two different mechanisms, both enforcing closed, checkable sets — and neither one can stop the model from confidently mapping "cost" onto a field that doesn't exist, because "cost means price" isn't a shape problem, it's a meaning problem, and meaning isn't something a JSON Schema has any vocabulary for.
 
 The fix was a hint describing the real data model, generated by reflecting over the actual `Item` struct so it can never quietly drift out of sync with the code:
 
@@ -99,49 +124,65 @@ The fix was a hint describing the real data model, generated by reflecting over 
 fn dataSchemaHint(allocator: std.mem.Allocator) ![]u8 {
     const fields = std.meta.fields(Item);
     // ...
-    try w.writeAll("The data being queried is {\"items\": [...]}, where each item has "
-        ++ "exactly these fields (no others exist): ");
+    try w.writeAll(
+        "The data being queried is {\"items\": [...]}, " ++
+        "where each item has exactly these fields " ++
+        "(no others exist): "
+    );
     inline for (fields, 0..) |field, i| {
         if (i > 0) try w.writeAll(", ");
         try w.print("\"{s}\"", .{field.name});
     }
     try w.writeAll(
-        \\. Map the user's wording onto exactly these field names, never a synonym
-        \\(e.g. "cost" or "amount" both mean the "price" field).
+        \\. Map the user's wording onto exactly these
+        \\field names, never a synonym (e.g. "cost" or
+        \\"amount" both mean the "price" field).
     );
     // ...
 }
 ```
 
-The first version of that fix caused its own regression. Its phrasing read enough like a literal path template that the model started emitting bare `"price"` instead of `"$.price"`, which crashed the path resolver — a different bug, caused by the sentence meant to fix the first one. Prompt text is an interface, and it broke the same way any interface breaks: a change that fixes one caller's misunderstanding introduces a new one. I fixed the wording, and — more durably — made path-resolution failures retry through the same feedback loop as validator rejections, instead of crashing the request outright:
+The first version of that fix caused its own regression. Its phrasing read enough like a literal path template that the model started emitting bare `"price"` instead of `"$.price"`. That crashed the path resolver — a different bug, caused by the very sentence meant to fix the first one. Prompt text is an interface, and it broke the same way any interface breaks: a change that fixes one caller's misunderstanding introduces a new one. I fixed the wording, and — more durably — made path-resolution failures retry through the same feedback loop as validator rejections, instead of crashing the request outright:
 
 ```zig
-switch (try attemptOnce(allocator, io, bus, doc, prompt, schema.value)) {
+switch (try attemptOnce(
+    allocator, io, bus, doc, prompt, schema.value
+)) {
     .valid => |content| {
-        // Schema-valid JSON can still be semantically unusable — e.g. a
-        // path that doesn't start with "$" or resolves against nothing.
-        // Treat that the same as a validator rejection and retry, rather
+        // Schema-valid JSON can still be semantically
+        // unusable — e.g. a path that doesn't start with
+        // "$" or resolves against nothing. Treat that the
+        // same as a validator rejection and retry, rather
         // than letting it crash the request.
-        if (reportMatches(allocator, bus, rows, data, content)) |_| {
+        if (reportMatches(
+            allocator, bus, rows, data, content
+        )) |_| {
             return;
         } else |err| {
-            reason = try std.fmt.allocPrint(allocator,
-                "the query could not be run against the data: {s}", .{@errorName(err)});
+            reason = try std.fmt.allocPrint(
+                allocator,
+                "the query could not be run against " ++
+                    "the data: {s}",
+                .{@errorName(err)},
+            );
             bad_content = content;
         }
     },
-    .rejected => |r| { reason = r.reason; bad_content = r.content; },
+    .rejected => |r| {
+        reason = r.reason;
+        bad_content = r.content;
+    },
 }
 ```
 
-That's the shape the "other 50%" actually takes in practice. Not a smarter model. A bounded retry loop that feeds the model the *specific, concrete reason* its last attempt failed and asks it to correct exactly that — the same discipline you'd apply to any unreliable upstream dependency, applied to a model instead of a flaky API.
+That's the shape the "other 50%" actually takes in practice. Not a smarter model. A bounded retry loop that feeds the model the *specific, concrete reason* its last attempt failed, and asks it to correct exactly that. It's the same discipline you'd apply to any unreliable upstream dependency — applied here to a model instead of a flaky API.
 
 ## Trust, but verify — literally
 
-Constrained decoding and the retry loop covered generation. Almost every other real bug in this project was caught the same way, and it wasn't by reading code and deciding it looked fine — it was by actually running it. A raw `curl` handshake and a Python `websocket-client` script surfaced a deadlock where the server's WebSocket handshake response wasn't being flushed. A real browser opening a page load and a WebSocket connection nearly simultaneously exposed a sequential accept-loop that could only ever service one of them. Live browser automation with the console open — not a glance at the rendered page — caught a frontend comparison against the wrong serialized shape of a Zig tagged union, and separately, a stray unmatched parenthesis in a syntax-highlighting regex that silently broke the entire page script.
+Constrained decoding and the retry loop covered generation. Almost every other real bug in this project was caught the same way, and it wasn't by reading code and deciding it looked fine — it was by actually running it. A raw `curl` handshake and a Python `websocket-client` script surfaced a deadlock where the server's WebSocket handshake response wasn't being flushed. A real browser opening a page load and a WebSocket connection nearly simultaneously exposed a sequential accept-loop that could only ever service one of them. Live browser automation with the console open — not a glance at the rendered page — caught a frontend comparison against the wrong serialized shape of a Zig tagged union. Separately, it caught a stray unmatched parenthesis in a syntax-highlighting regex that silently broke the entire page script.
 
 None of those were exotic bugs. All of them were invisible to a code read and obvious the moment something real touched the system. That's the same lesson I keep landing on with AI-assisted work generally: the plausible explanation for why something is behaving a certain way is not evidence, and neither is code that looks correct. Running it is evidence.
 
 ## The takeaway
 
-Directed decoding is necessary and it is not sufficient, and the distance between those two words was most of this project. Grammar-constrained sampling gives you something real: a guarantee that what comes back is structurally valid, which for anything you intend to execute against a live system is not optional. It does not give you a guarantee that the query means what your system needs it to mean — that a filter shaped correctly is also a filter shaped *correctly for your data*. That gap doesn't close itself, and it's exactly the gap an enterprise system built on sensitive data can't afford to wave away as a rounding error. Closing it took a real data-aware hint, a retry loop that treats semantic failure as seriously as syntactic failure, and a lot of actually running the thing instead of trusting that it probably worked. That part was never going to be something you get from a provider's API flag. It was always going to be, stubbornly, the job.
+Directed decoding is necessary and it is not sufficient, and the distance between those two words was most of this project. Grammar-constrained sampling gives you something real: a guarantee that what comes back is structurally valid, which for anything you intend to execute against a live system is not optional. It does not give you a guarantee that the query means what your system needs it to mean — that a well-formed filter is also a filter that's right for your data. That gap doesn't close itself, and it's exactly the gap an enterprise system built on sensitive data can't afford to wave away as a rounding error. Closing it took a real data-aware hint, a retry loop that treats semantic failure as seriously as syntactic failure, and a lot of actually running the thing instead of trusting that it probably worked. Directed decoding was never going to hand me that part for free. That was always going to be the other 50 percent — mine to build, not the sampler's.
