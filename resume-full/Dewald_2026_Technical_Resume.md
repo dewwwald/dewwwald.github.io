@@ -1,73 +1,85 @@
 # Dewald Laubscher
 
-**Senior Software Engineer | Platform Modernization | Data Infrastructure | AI-Assisted Productivity**  
-Atlanta, GA / Open to California or Remote | laubscher.dewald@gmail.com  
-LinkedIn: linkedin.com/in/dewaldlaubscher | Portfolio/GitHub: https://github.com/dewwwald
+**Senior / Lead Software Engineer — Full-Stack · Platform, Distributed Systems & Applied AI**  
+Atlanta, GA · Open to Remote · laubscher.dewald@gmail.com  
+linkedin.com/in/dewaldlaubscher · github.com/dewwwald
 
-## Professional Summary
+## Summary
 
-Senior software engineer and technical leader with 12+ years of experience building full-stack, platform, and data-intensive systems across startups, through acquisitions, and enterprise environments. Recent Intuit Mailchimp experience focused on platform infrastructure, legacy modernization, large-scale data processing, microservice migrations, developer productivity, and AI-assisted engineering workflows. Strong background in pragmatic architecture, distributed systems, DDD, dependency injection, modular design, production readiness & support, and technical mentorship.
-
-## Technical Highlights
-
-- Intuit Mailchimp platform experience across large-scale data processing—petabytes of data, customer-facing product feature sets, and shared engineering systems.
-- Modernized legacy systems using Kafka, Redshift, Debezium, microservices, and Strangler Fig migration patterns.
-- Improved microservice migration backfill performance by reducing processed-ID lookup complexity from O(n) to O(1) with a hashing-based strategy.
-- Worked on systems processing petabytes of data, including SMS and Mailchimp audience data.
-- Built AI-assisted orchestration workflows and collaborated on multi-agent prototypes for developer productivity, planning, and workflow automation.
-- Designed AI-assisted thematic analysis workflows combining sentiment scoring, classification logic, and expert-system rules to identify themes across customer feedback.
+Engineer with 12+ years across the full stack — from award-agency design craft to petabyte-scale distributed systems and applied AI. I've shipped products people touch and the platforms other engineers build on: large-scale event-driven pipelines and deep PostgreSQL on the backend; React and Angular with a full JavaScript-to-TypeScript migration on the frontend; and an applied-AI feature shipped to production that compiles natural language directly into a query AST. I was a founding engineer at a startup acquired by Mailchimp, so I move fast in ambiguity and take rough problems from prototype to production. I set standards other teams adopt without being told to, I mentor, and I care most about the details that change the outcome for the people downstream.
 
 ## Experience
 
 ### Intuit Mailchimp
 
-**Senior Software Engineer | Aug 2022 - Present**  
-Mississauga, Ontario / Atlanta, GA
+**Senior Software Engineer | Aug 2022 - Jul 2026**  
+Atlanta, GA
 
-- Contributed to platform infrastructure and legacy modernization across large-scale data systems using Kafka, Redshift, Debezium, microservices, and Strangler Fig migration patterns working in Colo and Cloud environments..
-- Improved microservice migration backfill performance by designing a hashing-based lookup strategy that reduced processed-ID checks from O(n) to O(1).
-- Worked on platform systems supporting large-scale data processing, customer-facing product capabilities, and shared engineering needs across Mailchimp and Intuit environments.
-- Participated in architectural discussions around dependency injection, modular systems, domain-driven design, maintainable platform design, and roadmap-aligned technical tradeoffs.
-- Built custom AI orchestration workflows and collaborated on multi-agent prototypes to improve developer productivity, planning clarity, task visibility, and workflow automation.
-- Mentored engineers through complex technical work, emphasizing autonomy, clarity, maintainability, code review, and strong engineering judgment.
+- Authored an RFC that resolved chronic customer-facing timeouts on serving large audience counts (up to ~49M records at p99): replaced real-time computation with an asynchronously precomputed value under eventual consistency — adopted cross-team, taken to first implementation by another team, then iterated until timeouts fell from ~1,000 affected accounts to a handful.
+- Built and shipped to production an applied-AI feature that compiled plain-language customer intent directly into Mailchimp's segmentation AST — collapsing a complex multi-step workflow into a conversation, serving real users.
+- Helped modernize the platform from colo monolith toward petabyte-scale, event-driven microservices — driving cross-team adoption of distributed-systems patterns (event-driven design, eventual consistency, precomputed read models) across Kafka, Redshift, Debezium, and Strangler Fig migrations.
+- Built, maintained and managed the implementation cloud compute using Infrastructure as code (version controlled using GIT) through Terraform in Cloud Formation, Jenkins and Argo.
+- Went deep on PostgreSQL at scale — read replicas, connection pooling, MVCC, query optimization — and designed REST APIs and read-model/caching layers for reliable serving.
+- Cut algorithmic cost where it compounds: redesigned large-scale migration backfills with a hashing-based lookup, reducing processed-ID checks from O(n) to O(1) with idempotent, resumable, failure-tolerant execution.
+- Led a cross-functional initiative that built BigQuery tooling over internal BI and commit-history data to identify ~$100K/month in dead infrastructure — coordinating access across BI, platform, and engineering orgs.
+- Built AI orchestration and multi-agent tooling aimed at developer productivity, and use AI-assisted development daily to write, debug, and optimize code.
+- Set engineering standards adopted beyond my own team — I built a dependency-injection framework ideation used by multiple teams — and mentored engineers on ownership, maintainability, and engineering judgment.
+- Owned SLO definition and observability (Splunk p75/p99, PagerDuty, Wavefront, Grafana), on-call reliability, and end-to-end Playwright test suites wired into CI/CD with provisioned cloud infrastructure.
+- Built Inbox, a customer-facing surface in React unifying email, SMS, and contact activity into a single per-contact timeline — reconciling heterogeneous sources into one coherent, stateful experience.
 
-**Software Engineer | Jun 2020 - Aug 2022 (Mailchimp Contractor)**  
-Gauteng, South Africa
+**Software Engineer (Contract) | Jun 2020 - Aug 2022**  
+Remote (South Africa)
 
-- Built and maintained full-stack software systems in a product engineering environment overseeing the technical implementation of a function by leading 5 engineers during Mailchimp's growth and acquisition by Intuit.
-- Contributed to scalable, maintainable application architecture while adapting to increasing organizational, product, and technical complexity.
-- Delivered reliable user-facing and internal capabilities in collaboration with product and engineering stakeholders.
-- Developed pragmatic engineering judgment around patterns, roadmap alignment, maintainability, and systems that serve business outcomes.
+- Led technical implementation for a product engineering function, overseeing a team of engineers through Mailchimp's growth and acquisition by Intuit.
+- Designed and led implementation of a website builder for surveys that supercharged the UX with multimedia and deeply customizable sections (React/Redux client-state architecture).
+- Drawing on deep HTML and HTTP knowledge, led implementation of email cookies that let users begin answering a survey inside an email and continue to the web version with their responses already populated.
+- Owned ingress infrastructure and peak-season capacity planning — sustaining ~10,000 requests/day with spikes into the millions of records, and moving high-usage customers onto dedicated database servers to hold availability under load.
+- Partnered with the data-steward organization to define and implement the logging standards the team adopted — grounded in data minimization: store and log only what is strictly necessary, discard the rest.
+- Implemented GDPR masking for logging along with other application security CSRF, Honeypot, Input validation.
+- Built platform-side input validation that closed a supply-chain risk in our form builder — malicious code hidden inside reusable agency design templates that could exfiltrate data.
 
 ### BigTeam
 
 **Founding Engineering Lead | Oct 2019 - Jun 2020**  
 Johannesburg, South Africa
 
-- Provided technical direction for a small engineering team of 3-4, giving guidance through architecture decisions, code review, delivery planning, technical standards, and product execution.
-- Translated ambiguous product and business needs into executable engineering plans, balancing speed, maintainability, scalability, and business impact in a fast paced startup environment.
-- Helped scale the engineering function toward acquisition by Mailchimp while balancing hands-on full-stack development, technical leadership, and stakeholder alignment.
-- Established lightweight engineering practices around autonomy, ownership, pragmatic architecture, maintainable systems, and delivery accountability.
+- Led a team of 4 engineers through the company's acquisition by Mailchimp — owning architecture decisions, code review, delivery planning, and production readiness.
+- Built and owned CI/CD pipelines and deployment infrastructure from scratch, establishing the engineering foundation the team scaled on from platform engineering, Session Auth, OAuth and frameworks.
+- Translated ambiguous product and business needs into executable engineering plans, and established practices around ownership, autonomy, and maintainable systems.
 
 **Founding Engineer | Aug 2017 - Oct 2019**  
 Johannesburg, South Africa
 
-- Built core product systems and full-stack capabilities across front-end, back-end, and product workflows in a fast-moving startup environment.
-- Designed custom AI-assisted thematic analysis workflows combining sentiment scoring, classification logic, and expert-system rules to identify recurring themes across customer feedback.
-- Contributed to maintainable software architecture and technical decision-making as the product and engineering organization grew toward acquisition by Mailchimp.
+- Authored a shared library (published to an internal Node registry, installed on both frontend and backend) that ran identical event-driven logic across client and server — processing JSON event blobs as mutators applied to accumulating state: a custom, in-process implementation of the event-sourcing pattern.
+- Migrated the entire product codebase from JavaScript to TypeScript single-handedly — a language-level upgrade to the foundation every engineer built on, delivered without disrupting active product development.
+- Built the app-wide reactive client data layer in Angular using RxJS observables, service layers, and decorators (and with React/Redux at Mailchimp) — client-state architecture owned end to end.
+- Designed and built the application's authentication and session infrastructure from scratch — OAuth flows, server-side session management, and JWT issuance/validation — securing both the client and backend surfaces of the product.
+- Built four core product surfaces full-stack — a results dashboard, the survey builder, audience management, and the survey-taking experience — owning reusable components, a high degree of interaction and motion design, and the backend behind each.
+- Built a custom annotation store that overlaid comments at pinned coordinates over both images and video, timestamping video comments so they surfaced in sync during playback — a spatial-and-temporal layer well beyond standard form tooling.
+- Designed and implemented a custom NLP thematic-analysis pipeline using classical techniques — stemming, lemmatization, sentiment scoring, and rule-based classification — to surface recurring themes across customer feedback, years before LLMs made this turnkey.
 
-### Earlier Experience
+### Prior Experience
 
-**Developer / Full-stack Web Developer | Sep 2014 - Sep 2019**
+**Front-End / Web Developer | Sep 2014 - Aug 2017**  
+Johannesburg, South Africa
 
-- Delivered 80+ websites and full-stack web projects across agency, product, and client environments, building strong foundations in front-end, back-end, deployment, client communication, and production support.
-- Bachelors in Computer Science and Information Technology, from NWU, Potchefstroom, South Africa (2011 - 2013)
+- Built around 80 pixel-perfect, fully responsive marketing and product websites in my first years as a developer at one of the region's top web-design agencies — where visual polish, interactivity, and craft were the product.
+- Owned projects end-to-end across backend, frontend, deployment, and production support, establishing the design-and-build foundations that carried into every role since.
+- Built out extendible CMS software in PHP to rapidly meet customer needs with increasing reusability and design flexibility.
+- Built dynamic forms with security-first principles like CSRF, Honeypots, and input sanitization — avoiding SQL injection.
 
 ## Technical Skills
 
-**Platform Systems:** Platform modernization, legacy migration, microservices, Strangler Fig, modular architecture, shared engineering systems, monolithic systems, colo to cloud migrations.  
-**Distributed Data:** Kafka, Redshift, Debezium, custom backfills, data pipelines, large-scale data processing, petabyte-scale audience data, resilience, redundancy, observability.  
-**Architecture:** Domain Driven Design, Model View Controller & OOP, dependency injection, design patterns, maintainable system design, architectural tradeoffs, scalable application architecture  
-**AI & Productivity:** AI orchestration workflows, multi-agent prototypes, workflow automation, AI-assisted planning, developer productivity, thematic analysis, sentiment scoring  
-**Engineering:** Full-stack development, API design, system design, code review, production support, distributed systems  
-**Stack:** PHP, JavaScript/TypeScript, Java, Python, Kotlin, Bash, React, Angular, Vue, Node, Laravel, Spring, AWS, Docker, Kubernetes, CI/CD, GitHub Actions, Splunk, PagerDuty
+**Languages:** Go, TypeScript, JavaScript, Python, Java, Kotlin, Zig/C  
+**Distributed Systems & Data:** Kafka, Debezium, Redshift, event-driven design, event sourcing, eventual consistency, precomputed read models, stream processing, petabyte-scale pipelines, backfills  
+**Backend & APIs:** PostgreSQL at scale (read replicas, MVCC, query optimization), REST API design, HTTP, caching / read-model design, message queues (Kafka, SQS, RabbitMQ)  
+**Frontend:** React, Angular, TypeScript (full JS→TS migration), client-side data & state (RxJS/reactive and Redux/flux), reusable components, pixel-perfect responsive design, interaction & motion  
+**Applied AI:** LLM orchestration, multi-agent / agentic tooling, prompt orchestration, natural language-to-AST / code generation, AI-assisted development (daily), classical NLP; currently deepening RAG, embeddings, vector databases & evaluation  
+**Platform & Infra:** AWS, Kubernetes, Docker, CI/CD, GitHub Actions, Strangler Fig migrations, colo-to-cloud  
+**Observability:** Splunk (p75/p99 SLOs), PagerDuty, Wavefront, Grafana, Bugsnag; on-call & incident response  
+**Data Privacy & Governance:** logging standards, PII handling, data minimization, privacy-conscious logging, data-steward collaboration  
+**Architecture & Leadership:** Domain-Driven Design, dependency injection, cross-team standards without authority, mentoring, 0→1 delivery, architectural tradeoffs, product sense
+
+## Education
+
+**B.Sc. Computer Science & Information Technology** — North-West University (NWU), Potchefstroom, South Africa · 2011–2013
